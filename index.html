@@ -34,13 +34,14 @@
 html,body{height:100%;margin:0;overflow:hidden;background:var(--void);color:var(--ink);font-family:var(--body)}
 #scene{position:fixed;inset:0;display:block;width:100%;height:100%;touch-action:none;outline:none}
 .hud{position:fixed;pointer-events:none;z-index:2}
-.brand{top:calc(16px + env(safe-area-inset-top,0px));left:16px;display:flex;align-items:baseline;gap:12px}
+.brand{top:calc(16px + env(safe-area-inset-top,0px));left:16px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.brand .credit{flex-basis:100%;font-size:11.5px;letter-spacing:.04em;color:var(--dim)}
 .brand b{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:.06em;color:var(--paper);text-shadow:0 0 18px rgba(255,150,60,.45)}
 .brand span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
 .stats{bottom:calc(16px + env(safe-area-inset-bottom,0px));right:16px;display:grid;grid-template-columns:auto auto;gap:2px 14px;font-size:12px;font-variant-numeric:tabular-nums;background:var(--panel);border:1px solid var(--line);padding:10px 12px;border-radius:6px}
 .stats dt{color:var(--dim);letter-spacing:.08em;text-transform:uppercase;font-size:10.5px;align-self:center}
 .stats dd{margin:0;text-align:right}
-.toast{top:calc(64px + env(safe-area-inset-top,0px));left:16px;font-family:var(--display);font-size:16px;color:var(--paper);opacity:0;transition:opacity .4s}
+.toast{top:calc(86px + env(safe-area-inset-top,0px));left:16px;font-family:var(--display);font-size:16px;color:var(--paper);opacity:0;transition:opacity .4s}
 .toast.on{opacity:1}
 #intro{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:3;max-width:440px;max-height:calc(100% - 32px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow-y:auto;overscroll-behavior:contain;background:var(--panel);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-left:3px solid var(--lacquer);padding:18px 20px;border-radius:4px;display:grid;gap:12px}
 #intro h1{margin:0;font-family:var(--display);font-weight:800;font-size:30px;line-height:1.1;text-wrap:balance}
@@ -90,6 +91,7 @@ body.touch .prompt{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
 #ending h2{margin:0;font-family:var(--display);font-weight:800;font-size:30px;line-height:1.1}
 #ending h2 small{display:block;font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:6px}
 #ending p{margin:0;font-size:14px;line-height:1.6;color:var(--dim)}
+#ending .credit{font-size:12px;letter-spacing:.04em}
 #endStats{font-variant-numeric:tabular-nums;color:var(--ink)!important}
 #endClose{justify-self:start;font:600 15px var(--display);color:var(--void);background:var(--paper);border:0;border-radius:3px;padding:9px 16px;cursor:pointer}
 #endClose:focus-visible,#reset:focus-visible{outline:2px solid var(--lacquer);outline-offset:3px}
@@ -102,7 +104,7 @@ body.touch .prompt{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
 
 <canvas id="scene" tabindex="0" aria-label="3D view of the Infinity Castle"></canvas>
 
-<div class="hud brand"><b>無限城</b><span>Infinity Castle</span></div>
+<div class="hud brand"><b>無限城</b><span>Infinity Castle</span><small class="credit">Made by Sahil Jhangar with Claude &lt;3</small></div>
 <div class="hud toast" id="toast"></div>
 <dl class="hud stats" id="stats">
   <dt>Gravity here</dt><dd id="sGrav">Floor</dd>
@@ -121,6 +123,7 @@ body.touch .prompt{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
   <h2>You reached the Heart<small>The centre of the castle</small></h2>
   <p>The light does not move when the biwa sounds. Neither, for a moment, do you.</p>
   <p id="endStats"></p>
+  <p class="credit">Made by Sahil Jhangar with Claude &lt;3</p>
   <button id="endClose" type="button">Keep exploring</button>
 </section>
 
