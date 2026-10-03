@@ -4,40 +4,16 @@
 <meta name="google-site-verification" content="r2qHEW0y1V3lgaAryYcJ4X7Gtk2SlVgD8y3Uikpys34" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Infinity Castle Explorer — Demon Slayer Fan Experience</title>
-<meta name="description" content="Explore an interactive 3D Infinity Castle (Mugen-jō) fan experience inspired by Demon Slayer: Kimetsu no Yaiba. Navigate Nakime's shifting fortress, discover hidden biwa players, charms, rare rooms and the Heart of the castle.">
-<meta name="keywords" content="Infinity Castle, Demon Slayer, Kimetsu no Yaiba, Mugen-jō, Mugen-jo, Nakime, Infinity Castle game, Demon Slayer game, 3D fan experience">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="googlebot" content="index, follow">
+<meta name="description" content="An open-world walk through the Infinity Castle, in your browser.">
 <meta name="theme-color" content="#120804">
-<meta name="application-name" content="Infinity Castle Explorer">
-<link rel="canonical" href="https://sahiljoster32.github.io/infinity-castle/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Infinity Castle Explorer">
-<meta property="og:title" content="Infinity Castle Explorer — Demon Slayer Fan Experience">
-<meta property="og:description" content="Explore a shifting 3D Infinity Castle inspired by Demon Slayer: Kimetsu no Yaiba. Find biwa players, unlock doors, collect charms and reach the Heart.">
-<meta property="og:url" content="https://sahiljoster32.github.io/infinity-castle/">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Infinity Castle Explorer — Demon Slayer Fan Experience">
-<meta name="twitter:description" content="An interactive 3D Infinity Castle fan experience inspired by Demon Slayer: Kimetsu no Yaiba.">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Infinity Castle Explorer",
-  "alternateName": ["Mugen-jō Explorer", "Mugen-jo Explorer"],
-  "url": "https://sahiljoster32.github.io/infinity-castle/",
-  "description": "Interactive 3D Infinity Castle fan experience inspired by Demon Slayer: Kimetsu no Yaiba.",
-  "applicationCategory": "GameApplication",
-  "operatingSystem": "Any",
-  "browserRequirements": "Requires JavaScript and WebGL",
-  "isAccessibleForFree": true,
-  "inLanguage": "en",
-  "genre": ["Fantasy", "Exploration", "Fan experience"],
-  "keywords": "Infinity Castle, Demon Slayer, Kimetsu no Yaiba, Mugen-jō, Nakime, 3D exploration"
-}
-</script>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Infinity Castle">
+<title>Mugen-jō Explorer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap">
 <style>
@@ -66,7 +42,7 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--void);color:var(
 .stats dd{margin:0;text-align:right}
 .toast{top:calc(64px + env(safe-area-inset-top,0px));left:16px;font-family:var(--display);font-size:16px;color:var(--paper);opacity:0;transition:opacity .4s}
 .toast.on{opacity:1}
-#intro{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:3;max-width:440px;background:var(--panel);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-left:3px solid var(--lacquer);padding:18px 20px;border-radius:4px;display:grid;gap:12px}
+#intro{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:3;max-width:440px;max-height:calc(100% - 32px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));overflow-y:auto;overscroll-behavior:contain;background:var(--panel);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-left:3px solid var(--lacquer);padding:18px 20px;border-radius:4px;display:grid;gap:12px}
 #intro h1{margin:0;font-family:var(--display);font-weight:800;font-size:30px;line-height:1.1;text-wrap:balance}
 #intro h1 small{display:block;font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:6px}
 #intro p{margin:0;font-size:14px;line-height:1.6;color:var(--dim);max-width:60ch}
@@ -78,8 +54,19 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--void);color:var(
 #enter:focus-visible,.tbtn:focus-visible{outline:2px solid var(--lacquer);outline-offset:3px}
 .resume{top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--display);font-size:15px;color:var(--paper);background:var(--panel);padding:8px 14px;border-radius:4px;border:1px solid var(--line)}
 .crosshair{top:50%;left:50%;width:4px;height:4px;margin:-2px 0 0 -2px;border-radius:50%;background:rgba(255,233,194,.7)}
-.touch{position:fixed;z-index:2;right:16px;bottom:calc(110px + env(safe-area-inset-bottom,0px));display:grid;gap:10px}
-.tbtn{width:56px;height:56px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--paper);font:600 14px var(--display);touch-action:none;user-select:none;-webkit-user-select:none}
+.touch{position:fixed;z-index:2;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:repeat(2,auto);gap:10px;justify-items:end;align-items:end}
+.tbtn{min-width:66px;height:44px;padding:0 14px;border-radius:22px;border:1px solid var(--line);background:var(--panel);color:var(--paper);font:500 14px var(--body);letter-spacing:.02em;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.tbtn:active{background:rgba(255,226,176,.18)}
+.tbtn.big{grid-column:1 / -1;width:88px;height:88px;min-width:0;padding:0;border-radius:50%;font-size:16px;font-weight:600}
+.fsbtn{position:fixed;z-index:3;top:calc(14px + env(safe-area-inset-top,0px));right:calc(16px + env(safe-area-inset-right,0px));font:500 13px var(--body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:7px 12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.fsbtn:hover{background:rgba(255,255,255,.08)}
+.fsbtn:focus-visible{outline:2px solid var(--lacquer);outline-offset:2px}
+body.touch .stats{top:calc(56px + env(safe-area-inset-top,0px));bottom:auto;right:calc(16px + env(safe-area-inset-right,0px));font-size:11px;padding:7px 10px;gap:1px 10px}
+body.touch .stats dt{font-size:9.5px}
+body.touch .brand{left:calc(16px + env(safe-area-inset-left,0px))}
+body.touch .brand b{font-size:22px}
+body.touch .toast{left:calc(16px + env(safe-area-inset-left,0px));font-size:14px;max-width:60vw}
+body.touch .prompt{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
 #joy{position:fixed;z-index:2;width:110px;height:110px;margin:-55px 0 0 -55px;border-radius:50%;border:1px solid var(--line);background:rgba(18,10,8,.35);pointer-events:none}
 #joy i{position:absolute;left:50%;top:50%;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;background:rgba(255,233,194,.35)}
 #intro .music{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:13px}
@@ -107,17 +94,16 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--void);color:var(
 #endClose{justify-self:start;font:600 15px var(--display);color:var(--void);background:var(--paper);border:0;border-radius:3px;padding:9px 16px;cursor:pointer}
 #endClose:focus-visible,#reset:focus-visible{outline:2px solid var(--lacquer);outline-offset:3px}
 #err{position:fixed;inset:0;display:grid;place-items:center;padding:16px;text-align:center;font-size:15px;color:var(--ink);z-index:9}
+@media (max-height:500px){ body.touch #intro .fine{display:none} body.touch #intro{gap:8px;padding:14px 16px 0} body.touch #intro h1{font-size:24px} body.touch #intro .row{position:sticky;bottom:0;margin:0 -16px;padding:10px 16px 14px;background:linear-gradient(to bottom,rgba(20,13,9,0),rgba(20,13,9,.96) 35%)} }
 @media (max-width:520px){ .stats{display:none} #intro h1{font-size:25px} #intro .fine{display:none} .lore{bottom:calc(150px + env(safe-area-inset-bottom,0px))} }
 </style>
 </head>
 <body>
-<noscript><div id="err">Infinity Castle Explorer is an interactive 3D Demon Slayer fan experience. JavaScript and WebGL are required to enter the castle.</div></noscript>
-
 
 <canvas id="scene" tabindex="0" aria-label="3D view of the Infinity Castle"></canvas>
 
 <div class="hud brand"><b>無限城</b><span>Infinity Castle</span></div>
-<div class="hud toast" id="toast">べべん</div>
+<div class="hud toast" id="toast"></div>
 <dl class="hud stats" id="stats">
   <dt>Gravity here</dt><dd id="sGrav">Floor</dd>
   <dt>Standing in</dt><dd id="sWhere">Walkway</dd>
@@ -132,17 +118,16 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--void);color:var(
 <div class="hud lore" id="lore" hidden><b>A charm reads</b><p></p></div>
 <div id="map" hidden><canvas id="mapCanvas" width="520" height="520" aria-label="Your hand-drawn map"></canvas><p id="mapNote"></p></div>
 <section id="ending" hidden>
-  <h2>You reached the Heart<small>心 · the centre of the castle</small></h2>
+  <h2>You reached the Heart<small>The centre of the castle</small></h2>
   <p>The light does not move when the biwa sounds. Neither, for a moment, do you.</p>
   <p id="endStats"></p>
   <button id="endClose" type="button">Keep exploring</button>
 </section>
 
 <section id="intro">
-  <h1>Enter the Infinity Castle<small>Demon Slayer · Kimetsu no Yaiba fan experience</small></h1>
+  <h1>Enter the Infinity Castle<small>Nakime's endless fortress</small></h1>
   <p>Ahead of you, past three paper seals on the Pilgrim's Way, burns the Heart of the castle. Each seal burns away when you find one of the hidden biwa players, who sit in quiet courtyards, one to a district. Listen for them: every time a biwa sounds, the rooms around you shift, and the sound comes from where the player sits.</p>
-  <p class="fine">Open sliding doors, find paper charms with lore and key charms that open locked doors and sealed gates, and look for the rare rooms: a flooded hall, a gilded throne room, a library of scrolls and an upside-down tea house. Your map keeps a record of where you've walked, until the biwa rewrites it.</p>
-  <p class="fine">An unofficial fan-made interactive experience inspired by <em>Demon Slayer: Kimetsu no Yaiba</em> and its Infinity Castle. This site is not affiliated with or endorsed by the rights holders.</p>
+  <p class="fine">Open sliding doors, find paper charms with lore and key charms that open locked doors and sealed gates, and look for the rare places: a flooded hall, a gilded throne room, a library of scrolls, an upside-down tea house, long lantern-lit halls, battlegrounds hanging in the void and forests of giant pillars. Your map keeps a record of where you've walked, until the biwa rewrites it.</p>
   <dl class="keys" id="keysDesk">
     <dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd>Walk</dd>
     <dt><kbd>Shift</kbd></dt><dd>Sprint</dd>
@@ -156,10 +141,11 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--void);color:var(
   <dl class="keys" id="keysTouch" hidden>
     <dt>Left thumb</dt><dd>Walk; push to the edge to sprint</dd>
     <dt>Right thumb</dt><dd>Look around</dd>
-    <dt>跳</dt><dd>Jump</dd>
-    <dt>開 / 図</dt><dd>Open or confront · your map</dd>
-    <dt>琵琶</dt><dd>Strike the biwa: the castle turns to the district you're in, and nearby districts rearrange</dd>
-    <dt>楽</dt><dd>Music on or off</dd>
+    <dt>Jump</dt><dd>Jump</dd>
+    <dt>Use · Map</dt><dd>Open doors or confront a biwa player · your map</dd>
+    <dt>Biwa</dt><dd>Strike the biwa: the castle turns to the district you're in, and nearby districts rearrange</dd>
+    <dt>Music</dt><dd>Music on or off</dd>
+    <dt>Full screen</dt><dd>Play without the browser bars</dd>
   </dl>
   <div class="music">
     <button id="musicPick" type="button">Choose music file…</button>
@@ -167,17 +153,18 @@ html,body{height:100%;margin:0;overflow:hidden;background:var(--void);color:var(
     <button id="musicForget" type="button" class="link">Forget</button>
     <input id="musicFile" type="file" accept="audio/*" hidden>
   </div>
-  <p class="fine">Pick a track from your device and it loops while you explore. It stays in this browser only and is never uploaded.</p>
+  <p class="fine" id="musicNote">Pick a track from your device and it loops while you explore. It stays in this browser only and is never uploaded.</p>
   <div class="row"><button id="enter" type="button">Enter the castle</button><button id="reset" type="button" class="link" hidden>Start over</button></div>
 </section>
 
 <div class="touch" id="touchUI" hidden>
-  <button class="tbtn" id="tJump" type="button" aria-label="Jump">跳</button>
-  <button class="tbtn" id="tUse" type="button" aria-label="Open or confront">開</button>
-  <button class="tbtn" id="tMap" type="button" aria-label="Map">図</button>
-  <button class="tbtn" id="tBiwa" type="button" aria-label="Strike the biwa">琵琶</button>
-  <button class="tbtn" id="tMusic" type="button" aria-label="Music on or off">楽</button>
+  <button class="tbtn" id="tMap" type="button">Map</button>
+  <button class="tbtn" id="tMusic" type="button">Music</button>
+  <button class="tbtn" id="tBiwa" type="button">Biwa</button>
+  <button class="tbtn" id="tUse" type="button">Use</button>
+  <button class="tbtn big" id="tJump" type="button">Jump</button>
 </div>
+<button class="fsbtn" id="fsBtn" type="button">Full screen</button>
 <div id="joy" hidden><i></i></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -243,7 +230,7 @@ const memo=new Map();
 function solid(mx,my,mz){
   const key=((mx+50000)*100003+(my+50000))*100019+(mz+50000);
   let v=memo.get(key); if(v!==undefined) return v;
-  if(mx*mx+my*my+mz*mz<10||onPilgrimWay(mx,my,mz)) v=false;
+  if(mx*mx+my*my+mz*mz<10||onPilgrimWay(mx,my,mz)||featureAt(mx,my,mz)) v=false;
   else{
     const [ai]=AX[district(mx,my,mz)], q=[mx,my,mz]; q[ai]*=0.3;
     const sv=SEED+sectorVar(mx,my,mz)*7919;
@@ -519,6 +506,10 @@ class Builder{
       this.col.push([_v.x-hx,_v.y-hy,_v.z-hz,_v.x+hx,_v.y+hy,_v.z+hz,0]);
     }
   }
+  // collision only: an invisible guard
+  hit(x,y,z,sx,sy,sz){ if(!this.col) return; const e=this.M.elements; _v.set(x,y,z).applyMatrix4(this.M);
+    const hx=(Math.abs(e[0])*sx+Math.abs(e[4])*sy+Math.abs(e[8])*sz)/2, hy=(Math.abs(e[1])*sx+Math.abs(e[5])*sy+Math.abs(e[9])*sz)/2, hz=(Math.abs(e[2])*sx+Math.abs(e[6])*sy+Math.abs(e[10])*sz)/2;
+    this.col.push([_v.x-hx,_v.y-hy,_v.z-hz,_v.x+hx,_v.y+hy,_v.z+hz,0]); }
   lh(mat,lo,hi,col,o){ this.box(mat,(lo[0]+hi[0])/2,(lo[1]+hi[1])/2,(lo[2]+hi[2])/2,hi[0]-lo[0],hi[1]-lo[1],hi[2]-lo[2],col,o); }
   light(x,y,z,warm){ _v.set(x,y,z).applyMatrix4(this.M); this.lp.push(_v.x,_v.y,_v.z); const w=warm===undefined?Math.random():warm; this.lc.push(1,0.72+0.2*w,0.38+0.3*w); }
   toWorld(x,y,z){ return new THREE.Vector3(x,y,z).applyMatrix4(this.M); }
@@ -528,7 +519,7 @@ class Builder{
     const L=i===0?[c,yb+height/2,t]:[t,yb+height/2,c];
     const P=new THREE.Vector3(L[0],L[1],L[2]).applyMatrix4(this.M);
     const qx=Math.round(P.x*4), qy=Math.round(P.y*4), qz=Math.round(P.z*4), id=qx+','+qy+','+qz, h=hash3(qx,qy,qz,SEED+1234)%100;
-    const kind=this.gate?(h<55?'sealed':'gate'):(h<9?'locked':(inner&&h<21?'false':'normal'));
+    const kind=this.gate?(h<55?'sealed':'gate'):(h<9?'locked':(inner&&!this.noFalse&&h<21?'false':'normal'));
     const q=new THREE.Quaternion().setFromRotationMatrix(this.M);
     const size=i===0?[0.1,height,width]:[width,height,0.1];
     const slide=new THREE.Vector3(i===0?0:1,0,i===0?1:0).applyQuaternion(q);
@@ -581,7 +572,7 @@ function localNeighbours(Mx,m){
 }
 
 /* ================= walkway rows ================= */
-function rowInfo(A,m){
+function baseRow(A,m){
   const b=m[(A+1)%3], c=m[(A+2)%3];
   const forced=A===0&&b===0&&c===0&&m[0]<=103;
   const h=hash3(b,c,A,SEED+555);
@@ -593,10 +584,12 @@ function rowInfo(A,m){
 // world-space centre of the doorway where a walkway row meets module m from direction w (unit, along A)
 function walkDoor(m,w,g){
   const A=w[0]?0:w[1]?1:2, s=w[A];
-  const row=rowInfo(A,m); if(!row||row.forced) return null;
+  let row=rowInfo(A,m); const site=row&&(row.arena||row.pillar);
+  if(site&&(site.g!==g||Math.sign(site.c[A]-m[A])!==s||row.reach!==Math.abs(m[A]-site.c[A]))) row=baseRow(A,m);   // a structure bridge only opens the face it arrives at
+  if(!row||row.forced) return null;
   const [a,sg]=AX[g]; if(a===A) return null;
   const n=[m[0]+w[0],m[1]+w[1],m[2]+w[2]];
-  if(district(n[0],n[1],n[2])!==g) return null;
+  if(!(row.arena||row.pillar)&&district(n[0],n[1],n[2])!==g) return null;
   const p1=(A+1)%3, p2=(A+2)%3, t3=3-A-a;
   const P=[0,0,0]; P[A]=m[A]*M+s*M/2; P[a]=m[a]*M+sg*FT[row.L]; P[t3]=m[t3]*M+(t3===p1?row.o1:row.o2);
   return new THREE.Vector3(P[0],P[1],P[2]);
@@ -935,6 +928,7 @@ function stairFrom(B,r,m,[i,s],lo,hi){
     const p=[...start]; p[i]+=s*k*5/dl; p[1]+=0.55*k*5/dl;
     const w=B.toWorld(p[0],p[1],p[2]), mm=[Math.round(w.x/M),Math.round(w.y/M),Math.round(w.z/M)];
     if(mm[0]===m[0]&&mm[1]===m[1]&&mm[2]===m[2]) continue;
+    if(featureAt(mm[0],mm[1],mm[2])){ L=0; break; }
     if(solid(mm[0],mm[1],mm[2])){ L=k*5; break; }
   }
   if(L<20) return;
@@ -951,67 +945,6 @@ function stairFrom(B,r,m,[i,s],lo,hi){
   for(let k=2;k<n;k+=3) for(const side of [-1.3,1.3]){ const c=[...start],sz=[0.12,1.0,0.12]; c[i]+=s*(k+0.5); c[1]+=0.55*(k+1)+0.5; c[j]+=side; bx(B,'wood',c,sz,RAIL); }
 }
 
-/* ================= connectors through empty modules (world frame) ================= */
-function connectors(B,m,lod){
-  for(let A=0;A<3;A++){
-    const row=rowInfo(A,m); if(!row) continue;
-    let neg=0,pos=0;
-    for(let k=1;k<=16;k++){ const n=[...m]; n[A]-=k; if(solid(n[0],n[1],n[2])){ neg=k; break; } }
-    for(let k=1;k<=16;k++){ const n=[...m]; n[A]+=k; if(solid(n[0],n[1],n[2])){ pos=k; break; } }
-    if(!row.forced&&(!neg||!pos)) continue;
-    const g=row.forced?0:district(m[0],m[1],m[2]);
-    const [a,sg]=AX[g];
-    B.U.copy(AXV[g]);
-    const p1=(A+1)%3, p2=(A+2)%3;
-    const c=[0,0,0]; c[A]=m[A]*M;
-    let l0=c[A]-M/2, l1=c[A]+M/2; if(neg===1) l0-=4; if(pos===1) l1+=4;
-    c[A]=(l0+l1)/2; const len=l1-l0;
-    if(a===A){ // truss column parallel to gravity
-      c[p1]=m[p1]*M+row.o1; c[p2]=m[p2]*M+row.o2;
-      for(const d1 of [-1.2,1.2]) for(const d2 of [-1.2,1.2]){ const pc=[...c],ps=[0.3,0.3,0.3]; pc[p1]+=d1; pc[p2]+=d2; ps[A]=len; bx(B,'wood',pc,ps,DARK); }
-      for(let t=l0+2;t<l1;t+=4){
-        if(lod===0){ const fc=[...c],fs=[2.7,2.7,2.7]; fc[A]=t; fs[A]=0.25; bx(B,'wood',fc,fs,DARK); }
-        const lp=[...c]; lp[A]=t; lp[p1]+=((t/4|0)%2?1.5:-1.5); B.light(lp[0],lp[1],lp[2]);
-      }
-    } else { // walkway at a floor level, lined with railings and lantern strings
-      const t3=3-A-a;
-      c[t3]=m[t3]*M+(t3===p1?row.o1:row.o2);
-      c[a]=row.forced?-2:m[a]*M+sg*(FT[row.L]-0.2);
-      const ds=[0,0,0]; ds[A]=len; ds[a]=0.4; ds[t3]=3; bx(B,'wood',c,ds,WOOD);
-      for(const side of [-1.5,1.5]){
-        if(lod<2){ const rc=[...c],rs=[0.12,0.12,0.12]; rc[t3]+=side; rc[a]+=sg*1.3; rs[A]=len; bx(B,'wood',rc,rs,RAIL); }
-        for(let t=l0+1;t<l1;t+=(lod===0?2:4)){
-          if(lod===0&&((t-l0)|0)%4<2){ const pc=[...c],ps=[0.1,0.1,0.1]; pc[A]=t; pc[t3]+=side; pc[a]+=sg*0.75; ps[a]=1.1; bx(B,'wood',pc,ps,RAIL); }
-          const lp=[...c]; lp[A]=t; lp[t3]+=side; lp[a]+=sg*1.5; B.light(lp[0],lp[1],lp[2]);
-        }
-      }
-      if(lod===0) for(let t=l0+4;t<l1;t+=8){ const lp=[...c]; lp[A]=t; lp[a]-=sg*1.4; B.light(lp[0],lp[1],lp[2],1); }
-      if(lod===0 && !row.forced && hash3(m[0],m[1],m[2],SEED+303)%100<2){ const ip=[...c]; ip[a]+=sg*1.4; B.item(ip[0],ip[1],ip[2]); }
-      if(row.forced && m[0]>=3 && lod<3){
-        if(m[0]%5===0 && m[0]<103){ // red gates along the Pilgrim's Way
-          for(const zz of [-2.3,2.3]){ B.box('wood',c[0],-2+2.9,zz,0.45,5.8,0.45,RED); B.box('stone',c[0],-1.6,zz,0.8,0.4,0.8,STONE); }
-          B.box('wood',c[0],-2+5.6,0,0.5,0.45,6.6,RED); B.box('wood',c[0],-2+6.1,0,0.7,0.35,7.6,DARK); B.box('wood',c[0],-2+4.6,0,0.35,0.3,5.2,RED);
-          B.light(c[0],-2+5.0,-2.3,1); B.light(c[0],-2+5.0,2.3,1);
-        }
-        if(m[0]===103){ // the last platform before the Heart
-          B.box('stone',1666,-2.3,0,20,0.6,20,STONE);
-          for(const zz of [-10,10]) B.box('wood',1666,-2+0.55,zz,20,1.1,0.16,RAIL);
-          B.box('wood',1676,-2+0.55,0,0.16,1.1,20,RAIL);
-          for(const [xx,zz] of [[1658,-8],[1658,8],[1674,-8],[1674,8]]) stoneLantern(B,xx,-2,zz);
-          for(const zz of [-4,4]) B.box('wood',1672,-2+4,zz,0.6,8,0.6,RED);
-          B.box('wood',1672,-2+7.8,0,0.7,0.6,10,RED); B.box('wood',1672,-2+8.4,0,0.9,0.4,11.5,DARK);
-        }
-      }
-      if(row.cov && lod<2){ // covered gallery: posts, tiled roof, lanterns under the eaves
-        for(const side of [-1.6,1.6]) for(let t=l0+2;t<l1;t+=4){ const pc=[...c],ps=[0.2,0.2,0.2]; pc[A]=t; pc[t3]+=side; pc[a]+=sg*1.65; ps[a]=3.3; bx(B,'wood',pc,ps,DARK); }
-        const rc=[...c],rs=[0,0,0]; rc[a]+=sg*3.45; rs[A]=len; rs[a]=0.32; rs[t3]=4.4; bx(B,'tile',rc,rs,ROOF);
-        const rc2=[...c],rs2=[0,0,0]; rc2[a]+=sg*3.75; rs2[A]=len; rs2[a]=0.3; rs2[t3]=2.2; bx(B,'tile',rc2,rs2,ROOF);
-        for(const side of [-2.2,2.2]){ const fc=[...c],fs=[0,0,0]; fc[t3]+=side; fc[a]+=sg*3.25; fs[A]=len; fs[a]=0.18; fs[t3]=0.1; bx(B,'wood',fc,fs,RED,{nc:1}); }
-        if(lod===0) for(let t=l0+4;t<l1;t+=4){ const lp=[...c]; lp[A]=t; lp[a]+=sg*2.7; B.light(lp[0],lp[1],lp[2],1); }
-      }
-    }
-  }
-}
 function strut(B,r,sx,sy,sz){
   const m=[sx*CH+Math.floor(r()*CH), sy*CH+Math.floor(r()*CH), sz*CH+Math.floor(r()*CH)];
   if(solid(m[0],m[1],m[2])) return;
@@ -1021,6 +954,7 @@ function strut(B,r,sx,sy,sz){
   const hit=(sgn)=>{ for(let k=1;k<60;k++){ const p=o.clone().addScaledVector(dir,sgn*k*6); if(solid(Math.round(p.x/M),Math.round(p.y/M),Math.round(p.z/M))) return p; } return null; };
   const a=hit(-1), b=hit(1); if(!a||!b) return;
   const L=a.distanceTo(b); if(L<70) return;
+  for(let t=0;t<L;t+=8){ const p=a.clone().addScaledVector(dir,t); if(featureAt(Math.round(p.x/M),Math.round(p.y/M),Math.round(p.z/M))) return; }
   const mid=a.clone().add(b).multiplyScalar(0.5), q=new THREE.Quaternion().setFromUnitVectors(XAXIS,dir);
   const thick=rr(r,0.7,1.6);
   B.box('wood',mid.x,mid.y,mid.z,L,thick,thick,DARK,{q});
@@ -1139,6 +1073,512 @@ function lmTeahouse(B,r,x0,x1,z0,z1,ft,top,gates){
   B.item(0,ft+1.4,0);
 }
 
+/* ================= great structures: battlegrounds, pillar halls and long hall runways =================
+   Battlegrounds and pillar halls are carved out of the mass on sparse lattices, so they open onto the buildings
+   around them. Bridges and grand stairs run from them to doors in those buildings, never through other structures.
+   Runways are grand upgrades of long walkway spans between two buildings. */
+const CA=14, CP=20;
+const nearWay=(c,r)=>c[0]>=-2-r&&c[0]<=114+r&&Math.abs(c[1])<=1+r&&Math.abs(c[2])<=1+r;
+const nearStart=(c,r)=>c[0]*c[0]+c[1]*c[1]+c[2]*c[2]<(r+4)*(r+4);
+const arenaMemo=new Map(), pillarMemo=new Map();
+const cellKey=(x,y,z)=>((x+4096)*8192+(y+4096))*8192+(z+4096);
+const PILLAR=[0.13,0.08,0.06], BRONZE=[0.62,0.45,0.2], ROPE=[0.74,0.62,0.38];
+function arenaSite(cx,cy,cz){
+  const k=cellKey(cx,cy,cz); let s=arenaMemo.get(k); if(s!==undefined) return s;
+  s=null; const h=hash3(cx,cy,cz,SEED+7001);
+  if(h%100<34){ const r=mulberry(h), c=[cx*CA+3+Math.floor(r()*8),cy*CA+3+Math.floor(r()*8),cz*CA+3+Math.floor(r()*8)];
+    if(!nearWay(c,5)&&!nearStart(c,5)){ const g=district(c[0],c[1],c[2]), [a,sg]=AX[g]; s={type:'arena',c,g,a,sg,u:(a+1)%3,v:(a+2)%3,seed:h,plan:null,key:k}; } }
+  if(arenaMemo.size>30000) arenaMemo.clear();
+  arenaMemo.set(k,s); return s;
+}
+function arenaNear(c,r){
+  for(let x=Math.floor((c[0]-r)/CA);x<=Math.floor((c[0]+r)/CA);x++) for(let y=Math.floor((c[1]-r)/CA);y<=Math.floor((c[1]+r)/CA);y++) for(let z=Math.floor((c[2]-r)/CA);z<=Math.floor((c[2]+r)/CA);z++){
+    const s=arenaSite(x,y,z); if(s&&Math.abs(s.c[0]-c[0])<=r&&Math.abs(s.c[1]-c[1])<=r&&Math.abs(s.c[2]-c[2])<=r) return true; }
+  return false;
+}
+function pillarSite(cx,cy,cz){
+  const k=cellKey(cx,cy,cz); let s=pillarMemo.get(k); if(s!==undefined) return s;
+  s=null; const h=hash3(cx,cy,cz,SEED+7101);
+  if(h%100<24){ const r=mulberry(h), c=[cx*CP+6+Math.floor(r()*8),cy*CP+6+Math.floor(r()*8),cz*CP+6+Math.floor(r()*8)];
+    if(!nearWay(c,8)&&!nearStart(c,8)&&!arenaNear(c,10)){ const g=district(c[0],c[1],c[2]), [a,sg]=AX[g]; s={type:'pillars',c,g,a,sg,u:(a+1)%3,v:(a+2)%3,seed:h,plan:null,key:k}; } }
+  if(pillarMemo.size>30000) pillarMemo.clear();
+  pillarMemo.set(k,s); return s;
+}
+// battleground: a 3x3 deck block with open air above, plus a one-module arm on each side for its bridge or stair
+function inArena(s,mx,my,mz){
+  const d=[mx-s.c[0],my-s.c[1],mz-s.c[2]], da=d[s.a]*s.sg; if(da<-1||da>2) return false;
+  const du=d[s.u], dv=d[s.v], au=Math.abs(du), av=Math.abs(dv);
+  if(au<=1&&av<=1) return true;
+  return da<=1&&((dv===0&&(au===2||au===3))||(du===0&&(av===2||av===3)));
+}
+// pillar hall: 7x7 modules across, a floor, three levels of beams, a roof, and an empty layer under the floor
+function inPillars(p,mx,my,mz){
+  const d=[mx-p.c[0],my-p.c[1],mz-p.c[2]], da=d[p.a]*p.sg;
+  return Math.abs(d[p.u])<=3&&Math.abs(d[p.v])<=3&&da>=-6&&da<=5;
+}
+// the carved structure a module belongs to, if any (each structure lies entirely inside its own lattice cell)
+function featureAt(mx,my,mz){
+  const s=arenaSite(Math.floor(mx/CA),Math.floor(my/CA),Math.floor(mz/CA));
+  if(s&&inArena(s,mx,my,mz)) return s;
+  const p=pillarSite(Math.floor(mx/CP),Math.floor(my/CP),Math.floor(mz/CP));
+  if(p&&inPillars(p,mx,my,mz)) return p;
+  return null;
+}
+// the first building along a bridge line, or 0 when the line is blocked, too long, crosses another structure or
+// ends somewhere without a door. Low bridges also need nothing beneath them whose roof could poke up through the deck.
+function reachLine(s,A,dir,lay,lat,k0,k1,houseOnly,low){
+  const o=3-A-s.a, n=[0,0,0];
+  for(let k=k0;k<=k1;k++){
+    n[0]=s.c[0]; n[1]=s.c[1]; n[2]=s.c[2]; n[A]+=dir*k; n[s.a]+=s.sg*lay; n[o]+=lat;
+    if(nearWay(n,1)||nearStart(n,1)||featureAt(n[0],n[1],n[2])) return 0;
+    if(solid(n[0],n[1],n[2])){
+      if(district(n[0],n[1],n[2])!==s.g) return 0;
+      const t=moduleType(n[0],n[1],n[2]);
+      return t==='house'||(!houseOnly&&(t==='hall'||t==='terrace'))?k:0;
+    }
+    if(low&&!clearBelow(n,s.a,s.sg)) return 0;
+    if(crossesBridge(n,s)) return 0;
+  }
+  return 0;
+}
+// bridges never cross: battlegrounds yield to lower-numbered battlegrounds; pillar halls yield to every battleground
+// and to lower-numbered halls (a strict order, so working this out can never loop)
+function crossesBridge(n,s){
+  for(let A=0;A<3;A++){
+    if(arenaRow(A,n,s.type==='arena'?s.key:Infinity)) return true;
+    if(s.type==='pillars'&&pillarRow(A,n,s.key)) return true;
+  }
+  return false;
+}
+function clearBelow(n,a,sg){ const b=[n[0],n[1],n[2]]; b[a]-=sg; return !solid(b[0],b[1],b[2])||moduleType(b[0],b[1],b[2])==='terrace'; }
+// each side of a battleground gets a level bridge, a stair down or a stair up, whichever first reaches a door
+function arenaPlan(s){
+  if(s.plan) return s.plan;
+  const plan=[], orders=[['flat','down','up'],['flat','up','down'],['down','flat','up'],['up','flat','down'],['down','up','flat']];
+  for(const A of [s.u,s.v]) for(const dir of [-1,1]){
+    const h=hash3(s.c[0]*5+A,s.c[1]*3+dir,s.c[2],SEED+7013);
+    let side=null;
+    for(const kind of orders[h%5]){
+      const lay=kind==='flat'?0:kind==='down'?-1:1;
+      if(kind==='down'){ let ok=true; for(const k of [2,3]){ const n=[...s.c]; n[A]+=dir*k; n[s.a]-=s.sg; if(!clearBelow(n,s.a,s.sg)) ok=false; } if(!ok) continue; }
+      const D=reachLine(s,A,dir,lay,0,4,18,false,true);
+      if(D){ side={A,dir,kind,lay,D}; break; }
+    }
+    plan.push(side);
+  }
+  return s.plan=plan;
+}
+const sideIndex=(s,A,dir)=>(A===s.u?0:2)+(dir>0?1:0);
+// pillar halls: level bridges from the floor between pillars, and beam bridges from the outer pillars
+const PLINES=[[-2,-5],[0,-5],[2,-5],[-3,0],[-1,0],[1,0],[3,0]];   // [lateral offset, layer]
+function lineIndex(s,A,dir,lat,lay){ for(let j=0;j<7;j++) if(PLINES[j][0]===lat&&PLINES[j][1]===lay) return ((A===s.u?0:1)*2+(dir>0?1:0))*7+j; return -1; }
+function pillarPlan(s){
+  if(s.plan) return s.plan;
+  const plan=new Array(28).fill(0);
+  for(const A of [s.u,s.v]) for(const dir of [-1,1]) for(const [lat,lay] of PLINES){
+    const i=lineIndex(s,A,dir,lat,lay), h=hash3(s.c[0]*7+i,s.c[1],s.c[2]*3,SEED+7111);
+    if(h%100<(lay===-5?55:35)) plan[i]=reachLine(s,A,dir,lay,lat,4,16,lay===0,lay===-5);
+  }
+  return s.plan=plan;
+}
+function arenaRow(A,m,lim=Infinity){
+  const P=(A+1)%3, Q=(A+2)%3, cc=[0,0,0];
+  for(let i=Math.floor((m[A]-18)/CA);i<=Math.floor((m[A]+18)/CA);i++) for(let j=Math.floor((m[P]-1)/CA);j<=Math.floor((m[P]+1)/CA);j++) for(let k=Math.floor((m[Q]-1)/CA);k<=Math.floor((m[Q]+1)/CA);k++){
+    cc[A]=i; cc[P]=j; cc[Q]=k;
+    const s=arenaSite(cc[0],cc[1],cc[2]); if(!s||s.a===A||s.key>=lim) continue;
+    const o=3-A-s.a; if(m[o]!==s.c[o]) continue;
+    const lay=(m[s.a]-s.c[s.a])*s.sg; if(lay<-1||lay>1) continue;
+    const dist=Math.abs(m[A]-s.c[A]); if(dist<2) continue;
+    const side=arenaPlan(s)[sideIndex(s,A,Math.sign(m[A]-s.c[A]))]; if(!side) continue;
+    const row={o1:0,o2:0,L:0,forced:false,cov:false,arena:s,reach:side.D};
+    if(side.kind==='flat'){ if(lay===0&&dist<=side.D) return row; }
+    else if(lay===0&&dist===2){ row.stair=side.lay; return row; }
+    else if(lay===side.lay&&dist>=4&&dist<=side.D) return row;
+  }
+  return null;
+}
+function pillarRow(A,m,lim=Infinity){
+  const P=(A+1)%3, Q=(A+2)%3, cc=[0,0,0];
+  for(let i=Math.floor((m[A]-16)/CP);i<=Math.floor((m[A]+16)/CP);i++) for(let j=Math.floor((m[P]-6)/CP);j<=Math.floor((m[P]+6)/CP);j++) for(let k=Math.floor((m[Q]-6)/CP);k<=Math.floor((m[Q]+6)/CP);k++){
+    cc[A]=i; cc[P]=j; cc[Q]=k;
+    const s=pillarSite(cc[0],cc[1],cc[2]); if(!s||s.a===A||s.key>=lim) continue;
+    const dist=Math.abs(m[A]-s.c[A]); if(dist<4) continue;
+    const o=3-A-s.a, lat=m[o]-s.c[o], lay=(m[s.a]-s.c[s.a])*s.sg;
+    const li=lineIndex(s,A,Math.sign(m[A]-s.c[A]),lat,lay); if(li<0) continue;
+    const D=pillarPlan(s)[li];
+    if(D&&dist<=D) return {o1:0,o2:0,L:lay===0?1:0,forced:false,cov:false,pillar:s,reach:D};
+  }
+  return null;
+}
+// every walkway row: structure bridges first, then the ordinary rows between buildings
+const bridgeMemo=new Map();
+function bridgeAt(n){   // does a structure bridge or stair run through this module? ordinary rows keep out of it
+  const k=((n[0]+50000)*100003+(n[1]+50000))*100019+(n[2]+50000);
+  let v=bridgeMemo.get(k); if(v!==undefined) return v;
+  v=false; for(let A=0;A<3&&!v;A++) if(arenaRow(A,n)||pillarRow(A,n)) v=true;
+  if(bridgeMemo.size>400000) bridgeMemo.clear();
+  bridgeMemo.set(k,v); return v;
+}
+function rowInfo(A,m){ return arenaRow(A,m)||pillarRow(A,m)||baseRow(A,m); }
+function lineFrame(O,A,dir,up){
+  const X=new THREE.Vector3().setComponent(A,dir), Z=new THREE.Vector3().crossVectors(X,up);
+  return new THREE.Matrix4().makeBasis(X,up.clone(),Z).setPosition(O);
+}
+
+/* ---------- battlegrounds ---------- */
+// the building block the stage stands on: two storeys of lit shoji with skirt eaves, under the deck
+function arenaBase(B,r,E,yTop,lod){
+  const yb=-24, h=yTop-yb, F=E-0.5, st=h/2, tint=[0.98,0.8,0.52];
+  B.box('wood',0,(yb+yTop)/2,0,2*F,h,2*F,DARK);
+  for(const [i,sd] of SIDES) for(let k=0;k<2;k++){
+    const y0=yb+k*st, c=sd*(F+0.02);
+    if(lod<2){
+      let q=0; for(let t=-F+2;t<F-1;t+=4,q++) W(B,'shoji',i,c+sd*0.05,t,y0+3.3,3.6,4.2,0.08,jit(r,tint,0.05),{unit:true,cell:SHOJI_CELLS[(k*2+q)%4],nc:1});
+      for(let t=-F;t<=F+0.01;t+=4) W(B,'wood',i,c+sd*0.14,t,y0+st/2,0.32,st,0.3,DARK,{nc:1});
+      W(B,'wood',i,c+sd*0.1,0,y0+0.75,2*F,0.5,0.3,DARK,{nc:1}); W(B,'wood',i,c+sd*0.1,0,y0+5.65,2*F,0.4,0.3,DARK,{nc:1});
+      skirtEave(B,i,c,sd,-F,F,y0+st);
+      for(let t=-F+1;t<F;t+=(lod===0?2:4)) B.light(i===0?c+sd*0.9:t,y0+st-0.45,i===0?t:c+sd*0.9,1);
+    } else {
+      W(B,'paper',i,c+sd*0.05,0,y0+3.3,2*F-2,4.2,0.1,jit(r,tint,0.05),{nc:1});
+      if(lod<3) for(let t=-F+2;t<F;t+=6) B.light(i===0?c+sd*0.6:t,y0+st-0.5,i===0?t:c+sd*0.6,1);
+    }
+  }
+  B.box('wood',0,yb-0.3,0,2*F+1,0.6,2*F+1,DARK);
+  if(lod<2) for(const sx of [-1,1]) for(const sz of [-1,1]) lantern(B,sx*(F-2.5),yb-1.4,sz*(F-2.5));
+}
+function buildArena(B,s,lod){
+  const r=mulberry(s.seed), E=24, top=FT[0], S=12;
+  const plan=arenaPlan(s), inv=BASEQ[s.g].clone().invert(), gaps={};
+  for(const p of plan){ if(!p) continue; const v=new THREE.Vector3().setComponent(p.A,p.dir).applyQuaternion(inv), i=Math.abs(v.x)>0.5?0:2; gaps[i+','+Math.sign(i===0?v.x:v.z)]=true; }
+  B.push(moduleMatrix(s.c,s.g,0)); B.U.copy(AXV[s.g]);
+  // the deck, its lacquered rim and the rows of small lights along it
+  B.box('wood',0,top-0.5,0,2*E,1.0,2*E,jit(r,WOOD,0.04));
+  B.box('wood',0,top-1.3,0,2*E+0.6,0.6,2*E+0.6,LACQ);
+  const ls=lod<2?1.6:3.2;
+  for(const [i,sd] of SIDES) for(let t=-E+0.8;t<E;t+=ls){ const p=sd*(E+0.32);
+    if(i===0){ B.light(p,top-0.5,t,1); if(lod<2) B.light(p,top-1.3,t+0.8,0.6); } else { B.light(t,top-0.5,p,1); if(lod<2) B.light(t+0.8,top-1.3,p,0.6); } }
+  arenaBase(B,r,E,top-1.6,lod);
+  // the stage: raised tatami with a lit edge and a low step on each side
+  B.box('wood',0,top+0.3,0,2*S+1.2,0.6,2*S+1.2,LACQ);
+  B.box('tatami',0,top+0.62,0,2*S,0.04,2*S,TAT,{nc:1});
+  for(const [i,sd] of SIDES){
+    if(lod<3) for(let t=-S+0.6;t<S;t+=(lod<2?1.2:2.4)){ if(i===0) B.light(sd*(S+0.45),top+0.66,t,1); else B.light(t,top+0.66,sd*(S+0.45),1); }
+    if(i===0) B.box('wood',sd*(S+0.95),top+0.15,0,0.8,0.3,7,DARK); else B.box('wood',0,top+0.15,sd*(S+0.95),7,0.3,0.8,DARK);
+  }
+  if(lod===3){ B.pop(); return; }
+  // rope boundary, red corner posts with lanterns, a beam frame hung with paper streamers
+  if(lod<2) for(const [i,sd] of SIDES){ if(i===0) B.box('wood',sd*(S-1.2),top+0.74,0,0.3,0.24,2*S-2.4,ROPE,{nc:1}); else B.box('wood',0,top+0.74,sd*(S-1.2),2*S-2.4,0.24,0.3,ROPE,{nc:1}); }
+  for(const sx of [-1,1]) for(const sz of [-1,1]){ const x=sx*(S+0.2), z=sz*(S+0.2);
+    B.box('wood',x,top+3.9,z,0.6,7,0.6,RED); B.box('glow',x,top+7.9,z,0.9,1.0,0.9,LANT,{nc:1}); B.box('wood',x,top+8.5,z,1.2,0.2,1.2,DARK,{nc:1}); B.light(x,top+7.9,z,1); }
+  if(lod<2){
+    for(const sd of [-1,1]){ B.box('wood',0,top+8.8,sd*(S+0.2),2*S+1.4,0.35,0.35,DARK,{nc:1}); B.box('wood',sd*(S+0.2),top+8.8,0,0.35,0.35,2*S+1.4,DARK,{nc:1}); }
+    for(let t=-S+2;t<S;t+=3) for(const sd of [-1,1]){ B.box('paper',t,top+8.0,sd*(S+0.2),0.35,1.4,0.04,[0.95,0.92,0.85],{nc:1}); B.box('paper',sd*(S+0.2),top+8.0,t,0.04,1.4,0.35,[0.95,0.92,0.85],{nc:1}); }
+  }
+  // the marks of old fights: slashes in the tatami, splintered planks, scorch marks, weapon racks
+  if(lod===0){
+    for(let k=0;k<10;k++){ const x=rr(r,-S+2,S-2), z=rr(r,-S+2,S-2); B.box('wood',x,top+0.66,z,rr(r,2,6),0.02,0.12,[0.1,0.06,0.05],{nc:1,q:rotY(r()*3.14)}); }
+    for(let k=0;k<10;k++){ const x=rr(r,-E+3,E-3), z=rr(r,-E+3,E-3); if(Math.abs(x)<S+2&&Math.abs(z)<S+2) continue;
+      B.box('wood',x,top+0.15,z,rr(r,1.5,3),0.25,0.35,jit(r,WOOD,0.1),{nc:1,q:new THREE.Quaternion().setFromEuler(new THREE.Euler(rr(r,-0.25,0.25),r()*3,rr(r,-0.2,0.2)))}); }
+    for(let k=0;k<7;k++){ const x=rr(r,-E+3,E-3), z=rr(r,-E+3,E-3); if(Math.abs(x)<S+2&&Math.abs(z)<S+2) continue; B.box('wood',x,top+0.01,z,rr(r,2,4),0.02,rr(r,2,4),[0.1,0.07,0.05],{nc:1}); }
+    for(const sd of [-1,1]){ const x=sd*(S+5);
+      B.box('wood',x,top+1.2,-6,0.25,2.4,0.25,DARK); B.box('wood',x,top+1.2,-2,0.25,2.4,0.25,DARK); B.box('wood',x,top+2.2,-4,0.3,0.2,4.4,DARK); B.box('wood',x,top+1.0,-4,0.3,0.2,4.4,DARK);
+      for(let k=0;k<4;k++) B.box('wood',x+0.16,top+1.3,-5.4+k*0.9,0.08,2.0,0.1,[0.62,0.48,0.3],{nc:1,q:new THREE.Quaternion().setFromEuler(new THREE.Euler(0.12,0,0))}); }
+  }
+  // railings with an opening wherever a bridge or stair leaves
+  for(const [i,sd] of SIDES){
+    const gap=gaps[i+','+sd]?[0]:[];
+    if(lod===0) railing(B,i,sd*(E-0.25),-E,E,top,gap);
+    else for(const [a0,a1] of gap.length?[[-E,-1.9],[1.9,E]]:[[-E,E]]){ if(i===0) B.box('wood',sd*(E-0.25),top+1.1,(a0+a1)/2,0.16,0.12,a1-a0,RAIL); else B.box('wood',(a0+a1)/2,top+1.1,sd*(E-0.25),a1-a0,0.12,0.16,RAIL); }
+  }
+  for(const sx of [-1,1]) for(const sz of [-1,1]) stoneLantern(B,sx*(E-2.5),top,sz*(E-2.5));
+  // tall banner poles at the deck edge
+  for(const [i,sd] of SIDES) for(const t of [-7,7]){ const px=i===0?sd*(E-1.4):t, pz=i===0?t:sd*(E-1.4);
+    B.box('wood',px,top+6,pz,0.3,12,0.3,DARK); B.box('glow',px,top+12.3,pz,0.5,0.6,0.5,LANT,{nc:1}); B.light(px,top+12.3,pz,1);
+    if(lod<2){ if(i===0) B.box('fusuma',px-sd*0.2,top+8.5,pz,0.05,5,1.6,[0.72,0.1,0.08],{nc:1}); else B.box('fusuma',px,top+8.5,pz-sd*0.2,1.6,5,0.05,[0.72,0.1,0.08],{nc:1}); } }
+  // braziers between stage and rim
+  if(lod<2) for(const sx of [-1,1]) for(const sz of [-1,1]){ const x=sx*(S+4.5), z=sz*(S+4.5);
+    B.box('stone',x,top+0.5,z,0.4,1.0,0.4,STONE); B.box('stone',x,top+1.1,z,1.2,0.3,1.2,[0.25,0.22,0.2]); B.box('glow',x,top+1.32,z,0.9,0.16,0.9,[1,0.5,0.18],{nc:1}); B.light(x,top+1.6,z,1); }
+  if(lod===0 && r()<0.6) B.item(rr(r,-4,4),top+1.9,rr(r,-4,4));
+  B.pop();
+}
+// a grand stair from the deck edge down or up one whole storey of the castle, through the side arm
+function buildArenaStair(B,m,info,lod){
+  const s=info.row.arena, A=info.A, dir=Math.sign(m[A]-s.c[A]), dy=info.row.stair, up=AXV[s.g];
+  const O=new THREE.Vector3(s.c[0]*M,s.c[1]*M,s.c[2]*M); O.setComponent(A,s.c[A]*M+dir*24); O.addScaledVector(up,FT[0]);
+  B.push(lineFrame(O,A,dir,up)); B.U.copy(up);
+  const r=mulberry(hash3(m[0],m[1],m[2],SEED+7021)), N=28, run=32/N, rise=16/N, SW=3.6, L=Math.hypot(32,16);
+  const q=new THREE.Quaternion().setFromUnitVectors(XAXIS,new THREE.Vector3(32,16*dy,0).normalize());
+  const lineY=x=>dy*(x/run+0.5)*rise;   // height of the tread tops along the run
+  if(lod<2){
+    for(let k=0;k<N;k++){ const x=(k+0.5)*run, top=dy*rise*(k+1);
+      B.box('wood',x,top-0.16,0,run+0.03,0.32,SW,jit(r,WOOD,0.05));
+      if(lod===0){ for(const sd of [-1,1]){ B.hit(x,top+0.6,sd*(SW/2+0.1),run,1.2,0.14); if(k%2===0) B.box('wood',x,top+0.55,sd*(SW/2+0.1),0.1,1.1,0.1,RAIL,{nc:1}); } }
+      if(lod===0&&k%3===1) for(const sd of [-1,1]) B.light(x,top+1.3,sd*(SW/2+0.1));
+    }
+  } else B.box('wood',16,lineY(16)-0.2,0,L,0.4,SW,WOOD,{q});
+  for(const sd of [-1,1]){
+    B.box('wood',16,lineY(16)-0.45,sd*(SW/2+0.12),L,0.9,0.24,DARK,{q});
+    if(lod<2) B.box('wood',16,lineY(16)+1.15,sd*(SW/2+0.1),L,0.12,0.16,RAIL,{q});
+  }
+  if(lod<3) B.box('wood',16,lineY(16)-0.75,0,L,0.3,SW,DARK,{q,nc:1});
+  if(info.row.reach===4) B.box('wood',34,dy*16-0.2,0,4.2,0.4,SW,WOOD);   // the building starts right at the top: a short landing reaches its door
+  for(const k of [6,13,20,27]){ const x=(k+0.5)*run, top=dy*rise*(k+1);
+    for(const sd of [-1,1]){ const z=sd*(SW/2+0.35); B.box('wood',x,top+1.1,z,0.2,2.2,0.2,DARK,{nc:1}); B.box('glow',x,top+2.45,z,0.5,0.6,0.5,LANT,{nc:1}); B.light(x,top+2.45,z,1); } }
+  B.pop();
+}
+
+/* ---------- pillar halls ---------- */
+// a box running along local x (ax 0) or local z (ax 2) between t0 and t1, centred on the module line
+function alongBox(B,ax,t0,t1,y,w,h,mat,col,o){ const c=(t0+t1)/2, L=Math.abs(t1-t0); if(ax===0) B.box(mat,c,y,0,L,h,w,col,o); else B.box(mat,0,y,c,w,h,L,col,o); }
+// a walkable truss beam: top chord with railings, red soffit, bottom chord, posts and X bracing, lamps along both
+function trussBeam(B,ax,t0,t1,lod){
+  const y=FT[1], lo=Math.min(t0,t1), hi=Math.max(t0,t1), len=hi-lo;
+  alongBox(B,ax,lo,hi,y-0.6,2.6,1.2,'wood',PILLAR);
+  if(lod<2){ alongBox(B,ax,lo,hi,y-1.35,1.4,0.3,'wood',RED,{nc:1}); alongBox(B,ax,lo,hi,y-4.6,1.2,0.8,'wood',PILLAR,{nc:1}); }
+  if(lod<2 && len>3){ const n=Math.max(1,Math.round(len/4)), step=len/n;
+    for(let k=0;k<=n;k++){ const t=lo+k*step; if(ax===0) B.box('wood',t,y-2.9,0,0.45,3.2,0.45,PILLAR,{nc:1}); else B.box('wood',0,y-2.9,t,0.45,3.2,0.45,PILLAR,{nc:1}); }
+    if(lod===0) for(let k=0;k<n;k++){ const t=lo+(k+0.5)*step, dl=Math.hypot(step,3.2);
+      for(const f of [1,-1]){ const d=ax===0?new THREE.Vector3(step,3.2*f,0):new THREE.Vector3(0,3.2*f,step); d.normalize();
+        if(ax===0) B.box('wood',t,y-2.9,0,dl,0.28,0.28,PILLAR,{nc:1,q:new THREE.Quaternion().setFromUnitVectors(XAXIS,d)});
+        else B.box('wood',0,y-2.9,t,dl,0.28,0.28,PILLAR,{nc:1,q:new THREE.Quaternion().setFromUnitVectors(XAXIS,d)}); } }
+  }
+  const ri=ax===0?2:0;
+  if(lod===0){ railing(B,ri,1.25,lo,hi,y,[]); railing(B,ri,-1.25,lo,hi,y,[]); }
+  else if(lod===1) for(const sd of [-1,1]){ if(ax===0) B.box('wood',(lo+hi)/2,y+1.1,sd*1.25,len,0.12,0.14,RAIL); else B.box('wood',sd*1.25,y+1.1,(lo+hi)/2,0.14,0.12,len,RAIL); }
+  const ls=lod===0?2.5:lod===1?5:10;
+  if(lod<3) for(let t=lo+1;t<hi;t+=ls){ for(const sd of [-1,1]){ if(ax===0) B.light(t,y-0.25,sd*1.42); else B.light(sd*1.42,y-0.25,t); }
+    if(lod<2){ if(ax===0) B.light(t+ls/2,y-5.1,0); else B.light(0,y-5.1,t+ls/2); } }
+}
+const CEIL=3, PLV=[-80+FT[0],-48+FT[1],FT[1],48+FT[1],80+CEIL], PBAY={'-4':0,'-2':1,'1':2,'4':3};
+function buildPillars(B,m,s,lod){
+  const d=[m[0]-s.c[0],m[1]-s.c[1],m[2]-s.c[2]], du=d[s.u], dv=d[s.v], da=d[s.a]*s.sg;
+  const up=AXV[s.g], F=lineFrame(new THREE.Vector3(m[0]*M,m[1]*M,m[2]*M),s.u,1,up);
+  const zs=new THREE.Vector3(0,0,1).transformDirection(F).getComponent(s.v)>0?1:-1;   // local z = world v times zs
+  const pu=(du&1)!==0, pv=(dv&1)!==0, plan=pillarPlan(s), line=(A,dir,lat,lay)=>{ const i=lineIndex(s,A,dir,lat,lay); return i<0?0:plan[i]; };
+  const r=mulberry(hash3(m[0],m[1],m[2],SEED+933)), BY=FT[1], beamLayer=da===-3||da===0||da===3;
+  B.push(F); B.U.copy(up);
+  // under the floor: lanterns hanging from its outer edge
+  if(da===-6){ if(lod<2&&(Math.abs(du)===3||Math.abs(dv)===3)&&!(pu&&pv)) lantern(B,du===3?6:du===-3?-6:0,5.6,dv===3?6*zs:dv===-3?-6*zs:0); B.pop(); return; }
+  // floor
+  if(da===-5){
+    B.box('wood',0,FT[0]-0.3,0,16,0.6,16,jit(r,WOOD,0.04));
+    if(lod<2){ B.box('wood',0,FT[0]-0.95,-4,16,0.7,0.8,DARK,{nc:1}); B.box('wood',0,FT[0]-0.95,4,16,0.7,0.8,DARK,{nc:1}); }
+    const edge=(i,sd,lat,A,dirW)=>{   // outer rim: lacquer lip, lights, a railing open where a bridge leaves
+      const D=lat===null?0:line(A,dirW,lat,-5), gap=D?[0]:[];
+      if(i===0) B.box('wood',sd*8.05,FT[0]-0.45,0,0.3,0.9,16,LACQ,{nc:1}); else B.box('wood',0,FT[0]-0.45,sd*8.05,16,0.9,0.3,LACQ,{nc:1});
+      if(lod<3) for(let t=-7;t<8;t+=(lod<2?2:4)){ if(i===0) B.light(sd*8.25,FT[0]-0.45,t,1); else B.light(t,FT[0]-0.45,sd*8.25,1); }
+      if(lod===0) railing(B,i,sd*7.75,-8,8,FT[0],gap);
+      else if(lod===1) for(const [a0,a1] of gap.length?[[-8,-1.9],[1.9,8]]:[[-8,8]]){ if(i===0) B.box('wood',sd*7.75,FT[0]+1.1,(a0+a1)/2,0.14,0.12,a1-a0,RAIL); else B.box('wood',(a0+a1)/2,FT[0]+1.1,sd*7.75,a1-a0,0.12,0.14,RAIL); }
+      if(D===4){ if(i===0) B.box('wood',sd*10,FT[0]-0.2,0,4,0.4,3,WOOD); else B.box('wood',0,FT[0]-0.2,sd*10,3,0.4,4,WOOD); }
+    };
+    if(Math.abs(du)===3) edge(0,Math.sign(du),pv?null:dv,s.u,Math.sign(du));
+    if(Math.abs(dv)===3) edge(2,Math.sign(dv)*zs,pu?null:du,s.v,Math.sign(dv));
+    if(lod===0 && !(pu&&pv)){ if(r()<0.3) stoneLantern(B,rr(r,-5,5),FT[0],rr(r,-5,5)); if(hash3(m[0],m[1],m[2],SEED+934)%100<4) B.item(rr(r,-4,4),FT[0]+1.4,rr(r,-4,4)); }
+  }
+  // pillar shafts at the centres of alternate modules: lacquered corners, bronze joints, lamps
+  if(pu&&pv){
+    const y0=da===-5?FT[0]:-8, y1=da===5?CEIL:8, h=y1-y0, yc=(y0+y1)/2;
+    B.box('wood',0,yc,0,3,h,3,PILLAR);
+    if(lod<3) for(const sx of [-1,1]) for(const sz of [-1,1]) B.box('wood',sx*1.42,yc,sz*1.42,0.3,h,0.3,RED,{nc:1});
+    if(lod<2 && da>-5) B.box('wood',0,-8,0,3.5,0.6,3.5,BRONZE,{nc:1});
+    if(lod<2) for(let y=y0+2;y<y1-1;y+=4){ B.light(1.75,y,0); B.light(-1.75,y,0); if(lod===0){ B.light(0,y+2,1.75); B.light(0,y+2,-1.75); } }
+    else if(lod===2) B.light(1.8,yc,0);
+    if(da===-5 && lod<3){ B.box('stone',0,FT[0]+0.5,0,5.6,1.0,5.6,STONE); B.box('stone',0,FT[0]+1.25,0,4.4,0.5,4.4,[0.3,0.27,0.25]); }
+    if(beamLayer){   // a walk ring around the shaft where the beams meet it
+      B.box('wood',0,BY-0.3,0,7.4,0.6,7.4,PILLAR);
+      if(lod<2){ B.box('wood',0,BY-0.8,0,7.8,0.4,7.8,RED,{nc:1}); B.box('wood',0,BY-1.5,0,5.6,1.0,5.6,PILLAR,{nc:1}); B.box('wood',0,BY-2.3,0,4.3,0.8,4.3,BRONZE,{nc:1}); }
+      const ext={x1:du===3&&da===0?line(s.u,1,dv,0):0, x0:du===-3&&da===0?line(s.u,-1,dv,0):0, z1:dv===3*zs&&da===0?line(s.v,zs,du,0):0, z0:dv===-3*zs&&da===0?line(s.v,-zs,du,0):0};
+      const att={x1:du+2<=3||ext.x1, x0:du-2>=-3||ext.x0, z1:Math.abs(dv+2*zs)<=3||ext.z1, z0:Math.abs(dv-2*zs)<=3||ext.z0};
+      if(lod===0){ railing(B,0,3.55,-3.7,3.7,BY,att.x1?[0]:[]); railing(B,0,-3.55,-3.7,3.7,BY,att.x0?[0]:[]); railing(B,2,3.55,-3.7,3.7,BY,att.z1?[0]:[]); railing(B,2,-3.55,-3.7,3.7,BY,att.z0?[0]:[]); }
+      if(lod<3) for(const sx of [-1,1]) for(const sz of [-1,1]) B.light(sx*3.9,BY-0.6,sz*3.9,1);
+      // beams leaving the outer pillars towards a building
+      if(ext.x1) trussBeam(B,0,3.7,ext.x1===4?12:8,lod); if(ext.x0) trussBeam(B,0,-3.7,ext.x0===4?-12:-8,lod);
+      if(ext.z1) trussBeam(B,2,3.7,ext.z1===4?12:8,lod); if(ext.z0) trussBeam(B,2,-3.7,ext.z0===4?-12:-8,lod);
+    }
+    if(da===5 && lod<3){   // a stepped bracket capital under the roof
+      B.box('wood',0,CEIL-0.35,0,8.4,0.7,8.4,RED); B.box('wood',0,CEIL-1.1,0,7,0.8,7,PILLAR); B.box('wood',0,CEIL-1.9,0,5.6,0.8,5.6,BRONZE); B.box('wood',0,CEIL-2.75,0,4.2,0.9,4.2,PILLAR);
+      if(lod<2) for(const sx of [-1,1]) for(const sz of [-1,1]){ B.box('wood',sx*3.2,CEIL-1.5,sz*3.2,1.2,0.6,1.2,PILLAR,{nc:1}); B.box('glow',sx*3.9,CEIL-2.2,sz*3.9,0.5,0.7,0.5,LANT,{nc:1}); B.light(sx*3.9,CEIL-2.2,sz*3.9,1); }
+    }
+  }
+  // truss beams between neighbouring pillars on the three beam levels
+  if(beamLayer && pu!==pv){ if(pv) trussBeam(B,0,-12.3,12.3,lod); else trussBeam(B,2,-12.3,12.3,lod); }
+  // great X braces between the levels: always on the outer faces, sometimes inside
+  const bay=PBAY[da];
+  if(bay!==undefined && pu!==pv && lod<3){
+    const outer=pv?Math.abs(dv)===3:Math.abs(du)===3;
+    if(outer || hash3(m[0],m[1],m[2],SEED+935)%100<35){
+      const yLo=PLV[bay]-da*16, yHi=PLV[bay+1]-da*16, ym=(yLo+yHi)/2, ax=pv?0:2;
+      for(const f of [1,-1]){
+        const dvec=ax===0?new THREE.Vector3(29,(yHi-yLo)*f,0):new THREE.Vector3(0,(yHi-yLo)*f,29), Ld=dvec.length(); dvec.normalize();
+        const qd=new THREE.Quaternion().setFromUnitVectors(XAXIS,dvec);
+        if(ax===0) B.box('wood',0,ym,0,Ld,1.0,1.0,PILLAR,{q:qd}); else B.box('wood',0,ym,0,Ld,1.0,1.0,PILLAR,{q:qd});
+        if(lod<2) for(let t=3;t<Ld-2;t+=(lod===0?4:8)){ const p=dvec.clone().multiplyScalar(t-Ld/2); B.light(p.x,ym+p.y+0.7,p.z); }
+      }
+      if(lod<2){ if(ax===0) B.box('wood',0,ym,0,2.2,2.2,0.5,BRONZE,{nc:1}); else B.box('wood',0,ym,0,0.5,2.2,2.2,BRONZE,{nc:1}); B.light(0,ym,0,1); }
+    }
+  }
+  // the roof: coffered ceiling of lit paper, tiled top, red-fasciaed eaves with lamps on the outer edge
+  if(da===5){
+    B.box('wood',0,CEIL+0.4,0,16,0.8,16,PILLAR);
+    B.box('tile',0,CEIL+1.1,0,16,0.6,16,ROOF);
+    if(lod<2){ for(const t of [-7.55,0,7.55]){ B.box('wood',t,CEIL-0.35,0,0.9,0.7,16,DARK,{nc:1}); B.box('wood',0,CEIL-0.35,t,16,0.7,0.9,DARK,{nc:1}); }
+      for(const x of [-3.8,3.8]) for(const z of [-3.8,3.8]){ B.box('paper',x,CEIL-0.04,z,6.5,0.06,6.5,[1,0.86,0.62],{unit:true,nc:1}); if(lod===0) B.light(x,CEIL-0.5,z,1); } }
+    const eave=(i,sd)=>{ if(i===0){ B.box('tile',sd*9.2,CEIL+1.0,0,2.4,0.5,16,ROOF); B.box('wood',sd*10.35,CEIL+0.75,0,0.15,0.4,16,RED,{nc:1}); } else { B.box('tile',0,CEIL+1.0,sd*9.2,16,0.5,2.4,ROOF); B.box('wood',0,CEIL+0.75,sd*10.35,16,0.4,0.15,RED,{nc:1}); }
+      if(lod<3) for(let t=-7;t<8;t+=(lod<2?2:4)){ if(i===0) B.light(sd*10.5,CEIL+0.5,t,1); else B.light(t,CEIL+0.5,sd*10.5,1); } };
+    if(Math.abs(du)===3) eave(0,Math.sign(du)); if(Math.abs(dv)===3) eave(2,Math.sign(dv)*zs);
+  }
+  B.pop();
+}
+
+/* ---------- long hall runways ---------- */
+// the ordinary walkway rows between buildings (feature regions excluded: a row may not pass through a structure)
+function walkInfo(A,m){
+  const row=rowInfo(A,m); if(!row) return null;
+  const site=row.arena||row.pillar;
+  if(site){
+    const dist=Math.abs(m[A]-site.c[A]); if(dist>=row.reach) return null;
+    const out=row.reach-dist, [a,sg]=AX[site.g];
+    return {A,row,neg:m[A]<site.c[A]?out:0,pos:m[A]>site.c[A]?out:0,g:site.g,a,sg,grand:null};
+  }
+  if(featureAt(m[0],m[1],m[2])||bridgeAt(m)) return null;
+  let neg=0,pos=0; const n=[0,0,0];
+  for(let k=1;k<=16;k++){ n[0]=m[0]; n[1]=m[1]; n[2]=m[2]; n[A]-=k; if(solid(n[0],n[1],n[2])){ neg=k; break; } if(featureAt(n[0],n[1],n[2])||bridgeAt(n)) return null; }
+  for(let k=1;k<=16;k++){ n[0]=m[0]; n[1]=m[1]; n[2]=m[2]; n[A]+=k; if(solid(n[0],n[1],n[2])){ pos=k; break; } if(featureAt(n[0],n[1],n[2])||bridgeAt(n)) return null; }
+  if(!row.forced&&(!neg||!pos)) return null;
+  const g=row.forced?0:district(m[0],m[1],m[2]), [a,sg]=AX[g];
+  let grand=null;
+  if(!row.forced && a!==A && row.L<=1 && neg+pos-1>=5){
+    const start=m[A]-(neg-1), h=hash3(m[(A+1)%3]*7+start*13,m[(A+2)%3],A,SEED+811);
+    if(h%100<55 && runwayClear(A,m,start,neg+pos-1,row.L,a,sg,g)) grand=['veranda','veranda','corridor','lanterns'][(h>>>8)%4];
+  }
+  return {A,row,neg,pos,g,a,sg,grand};
+}
+// a runway needs nothing crossing it one storey up (it would hit the roof) and, at the lowest level, no roofs beneath
+function runwayClear(A,m,start,len,L,a,sg,g){
+  const t3=3-A-a, n=[m[0],m[1],m[2]];
+  for(let k=0;k<len;k++){
+    n[A]=start+k;
+    if(district(n[0],n[1],n[2])!==g) return false;   // one gravity along the whole hall
+    const x=rowInfo(t3,n); if(x&&(x.forced||x.arena||x.pillar||x.L===L+1)) return false;
+    if(L===0&&!clearBelow(n,a,sg)) return false;
+  }
+  return true;
+}
+function runwayAt(m){ for(let A=0;A<3;A++){ const i=walkInfo(A,m); if(i&&i.grand) return i; } return null; }
+
+function buildRunway(B,m,run,lod,cross){
+  const {A,row,neg,pos,g,a,sg,grand:V}=run, up=AXV[g], t3=3-A-a;
+  const O=new THREE.Vector3(); O.setComponent(A,m[A]*M); O.setComponent(t3,m[t3]*M); O.setComponent(a,m[a]*M+sg*FT[row.L]);
+  B.push(lineFrame(O,A,1,up)); B.U.copy(up);
+  const r=mulberry(hash3(m[0],m[1],m[2],SEED+812)), W2=5.5;
+  const x0=-8-(neg===1?4:0), x1=8+(pos===1?4:0);
+  const upM=[...m]; upM[a]+=sg; const H=solid(upM[0],upM[1],upM[2])?Math.min(6.2,8-FT[row.L]-0.8):6.2;
+  const xs=cross.map(c=>c.x);
+  // floor, under-beams, a runner down the middle and small footlights along both edges
+  B.box('wood',(x0+x1)/2,-0.3,0,x1-x0,0.6,W2*2,jit(r,WOOD,0.04));
+  if(lod<2) for(let x=-6;x<=6;x+=4) B.box('wood',x,-0.95,0,0.5,0.7,W2*2+0.4,DARK,{nc:1});
+  if(V==='lanterns'){ B.box('stone',0,0.01,0,16,0.02,W2*2-0.6,STONE,{nc:1}); B.box('tatami',0,0.03,0,16,0.04,3.2,[1.15,0.32,0.28],{nc:1}); }
+  else B.box('tatami',0,0.02,0,16,0.04,5.2,TAT,{nc:1});
+  if(lod<3) for(const s of [-1,1]) for(let x=-7;x<=7;x+=2){ if(lod===0) B.box('glow',x,0.06,s*(W2-0.4),0.3,0.08,0.16,[1,0.75,0.4],{nc:1}); B.light(x,0.18,s*(W2-0.4),1); }
+  // landings where a crossing walkway arrives at the side of the hall
+  for(const x of xs) for(const s of [-1,1]) B.box('wood',x,-0.3,s*(W2+8)/2,3,0.6,8-W2,WOOD);
+  if(V==='veranda'){
+    for(const s of [-1,1]){
+      for(let x=-6;x<=6;x+=4) if(!xs.some(c=>Math.abs(c-x)<2)) B.box('wood',x,H/2,s*(W2-0.3),0.45,H,0.45,DARK);
+      if(lod===0) railing(B,2,s*(W2-0.3),-8,8,0,xs); else if(lod<2) B.box('wood',0,1.1,s*(W2-0.3),16,0.14,0.18,RAIL);
+    }
+    B.box('wood',0,H+0.15,0,16,0.3,W2*2+0.6,DARK);
+    if(lod<2) for(let x=-7;x<=7;x+=2) B.box('wood',x,H-0.15,0,0.22,0.3,W2*2,DARK,{nc:1});
+    B.box('tile',0,H+0.5,0,16,0.4,W2*2+3.2,ROOF); B.box('tile',0,H+0.95,0,16,0.5,W2*2-1,ROOF); B.box('wood',0,H+1.32,0,16,0.3,1.0,DARK);
+    if(lod<2) for(const s of [-1,1]) B.box('wood',0,H+0.32,s*(W2+1.6),16,0.18,0.12,RED,{nc:1});
+    if(lod===0) for(let x=-6;x<=6;x+=4){ lantern(B,x,H-1.4,0); for(const s of [-1,1]) lantern(B,x+2,H-0.9,s*(W2+1.0)); }
+    else for(let x=-6;x<=6;x+=4) B.light(x,H-1.4,0,1);
+  } else if(V==='corridor'){
+    if(lod===0){ B.noFalse=true; for(const s of [-1,1]) wall(B,r,2,s*W2,-8,8,0,H,false,xs); B.noFalse=false; }
+    else for(const s of [-1,1]) B.box(lod<2?'fusuma':'wood',0,H/2,s*W2,16,H,0.25,lod<2?[0.82,0.74,0.62]:DARK);
+    B.box('wood',0,H+0.15,0,16,0.3,W2*2+0.5,DARK); B.box('tile',0,H+0.55,0,16,0.5,W2*2+1.8,ROOF);
+    if(lod<2){ for(let x=-7;x<=7;x+=2) B.box('wood',x,H-0.12,0,0.22,0.24,W2*2,DARK,{nc:1}); B.box('fusuma',0,H-0.02,0,16,0.04,W2*2-0.4,[0.75,0.62,0.4],{nc:1}); }
+    for(const s of [-1,1]) for(let x=-6;x<=6;x+=4){ const z=s*(W2-0.7);
+      if(lod===0){ B.box('wood',x,0.05,z,0.6,0.1,0.6,DARK,{nc:1}); B.box('paper',x,0.62,z,0.48,1.0,0.48,[1,0.86,0.62],{unit:true,nc:1}); B.box('wood',x,1.15,z,0.56,0.06,0.56,DARK,{nc:1}); }
+      B.light(x,0.65,z,1); }
+    if(lod===0) for(let x=-4;x<=4;x+=8) lantern(B,x,H-1.3,0);
+  } else {
+    for(const s of [-1,1]){
+      for(let x=-6;x<=6;x+=4){ const z=s*(W2-0.5); B.box('wood',x,2.3,z,0.3,4.6,0.3,DARK); B.box('glow',x,4.95,z,0.7,0.9,0.7,LANT,{nc:1}); B.box('wood',x,5.5,z,0.95,0.18,0.95,DARK,{nc:1}); B.light(x,4.95,z,1); }
+      if(lod===0) railing(B,2,s*(W2-0.12),-8,8,0,xs);
+      if(lod<2 && (m[A]&1)) B.box('fusuma',0,3.0,s*(W2-0.5),2.8,2.6,0.05,[0.75,0.1,0.08],{nc:1});
+    }
+  }
+  if(lod===0 && hash3(m[0],m[1],m[2],SEED+303)%100<3) B.item(rr(r,-4,4),1.4,rr(r,-2,2));
+  B.pop();
+}
+function buildWalk(B,m,info,lod){
+  const {A,row,neg,pos,g,a,sg}=info;
+  B.U.copy(AXV[g]);
+  const p1=(A+1)%3, p2=(A+2)%3;
+  const c=[0,0,0]; c[A]=m[A]*M;
+  let l0=c[A]-M/2, l1=c[A]+M/2; if(neg===1) l0-=4; if(pos===1) l1+=4;
+  c[A]=(l0+l1)/2; const len=l1-l0;
+  if(a===A){ // truss column parallel to gravity
+    c[p1]=m[p1]*M+row.o1; c[p2]=m[p2]*M+row.o2;
+    for(const d1 of [-1.2,1.2]) for(const d2 of [-1.2,1.2]){ const pc=[...c],ps=[0.3,0.3,0.3]; pc[p1]+=d1; pc[p2]+=d2; ps[A]=len; bx(B,'wood',pc,ps,DARK); }
+    for(let t=l0+2;t<l1;t+=4){
+      if(lod===0){ const fc=[...c],fs=[2.7,2.7,2.7]; fc[A]=t; fs[A]=0.25; bx(B,'wood',fc,fs,DARK); }
+      const lp=[...c]; lp[A]=t; lp[p1]+=((t/4|0)%2?1.5:-1.5); B.light(lp[0],lp[1],lp[2]);
+    }
+    return;
+  }
+  // walkway at a floor level, lined with railings and lantern strings
+  const t3=3-A-a;
+  c[t3]=m[t3]*M+(t3===p1?row.o1:row.o2);
+  c[a]=row.forced?-2:m[a]*M+sg*(FT[row.L]-0.2);
+  const ds=[0,0,0]; ds[A]=len; ds[a]=0.4; ds[t3]=3; bx(B,'wood',c,ds,WOOD);
+  for(const side of [-1.5,1.5]){
+    if(lod<2){ const rc=[...c],rs=[0.12,0.12,0.12]; rc[t3]+=side; rc[a]+=sg*1.3; rs[A]=len; bx(B,'wood',rc,rs,RAIL); }
+    for(let t=l0+1;t<l1;t+=(lod===0?2:4)){
+      if(lod===0&&((t-l0)|0)%4<2){ const pc=[...c],ps=[0.1,0.1,0.1]; pc[A]=t; pc[t3]+=side; pc[a]+=sg*0.75; ps[a]=1.1; bx(B,'wood',pc,ps,RAIL); }
+      const lp=[...c]; lp[A]=t; lp[t3]+=side; lp[a]+=sg*1.5; B.light(lp[0],lp[1],lp[2]);
+    }
+  }
+  if(lod===0) for(let t=l0+4;t<l1;t+=8){ const lp=[...c]; lp[A]=t; lp[a]-=sg*1.4; B.light(lp[0],lp[1],lp[2],1); }
+  if(lod===0 && !row.forced && hash3(m[0],m[1],m[2],SEED+303)%100<2){ const ip=[...c]; ip[a]+=sg*1.4; B.item(ip[0],ip[1],ip[2]); }
+  if(row.forced && m[0]>=3 && lod<3){
+    if(m[0]%5===0 && m[0]<103){ // red gates along the Pilgrim's Way
+      for(const zz of [-2.3,2.3]){ B.box('wood',c[0],-2+2.9,zz,0.45,5.8,0.45,RED); B.box('stone',c[0],-1.6,zz,0.8,0.4,0.8,STONE); }
+      B.box('wood',c[0],-2+5.6,0,0.5,0.45,6.6,RED); B.box('wood',c[0],-2+6.1,0,0.7,0.35,7.6,DARK); B.box('wood',c[0],-2+4.6,0,0.35,0.3,5.2,RED);
+      B.light(c[0],-2+5.0,-2.3,1); B.light(c[0],-2+5.0,2.3,1);
+    }
+    if(m[0]===103){ // the last platform before the Heart
+      B.box('stone',1666,-2.3,0,20,0.6,20,STONE);
+      for(const zz of [-10,10]) B.box('wood',1666,-2+0.55,zz,20,1.1,0.16,RAIL);
+      B.box('wood',1676,-2+0.55,0,0.16,1.1,20,RAIL);
+      for(const [xx,zz] of [[1658,-8],[1658,8],[1674,-8],[1674,8]]) stoneLantern(B,xx,-2,zz);
+      for(const zz of [-4,4]) B.box('wood',1672,-2+4,zz,0.6,8,0.6,RED);
+      B.box('wood',1672,-2+7.8,0,0.7,0.6,10,RED); B.box('wood',1672,-2+8.4,0,0.9,0.4,11.5,DARK);
+    }
+  }
+  if(row.cov && lod<2){ // covered gallery: posts, tiled roof, lanterns under the eaves
+    for(const side of [-1.6,1.6]) for(let t=l0+2;t<l1;t+=4){ const pc=[...c],ps=[0.2,0.2,0.2]; pc[A]=t; pc[t3]+=side; pc[a]+=sg*1.65; ps[a]=3.3; bx(B,'wood',pc,ps,DARK); }
+    const rc=[...c],rs=[0,0,0]; rc[a]+=sg*3.45; rs[A]=len; rs[a]=0.32; rs[t3]=4.4; bx(B,'tile',rc,rs,ROOF);
+    const rc2=[...c],rs2=[0,0,0]; rc2[a]+=sg*3.75; rs2[A]=len; rs2[a]=0.3; rs2[t3]=2.2; bx(B,'tile',rc2,rs2,ROOF);
+    for(const side of [-2.2,2.2]){ const fc=[...c],fs=[0,0,0]; fc[t3]+=side; fc[a]+=sg*3.25; fs[A]=len; fs[a]=0.18; fs[t3]=0.1; bx(B,'wood',fc,fs,RED,{nc:1}); }
+    if(lod===0) for(let t=l0+4;t<l1;t+=4){ const lp=[...c]; lp[A]=t; lp[a]+=sg*2.7; B.light(lp[0],lp[1],lp[2],1); }
+  }
+}
+/* ---------- connectors through empty modules: walkways, trusses, structure bridges and runways ---------- */
+function connectors(B,m,lod,f){
+  const infos=[walkInfo(0,m),walkInfo(1,m),walkInfo(2,m)];
+  let run=null; for(const i of infos) if(i&&i.grand){ run=i; break; }
+  const cross=[];
+  if(run) for(const i of infos){ if(!i||i===run||i.a===i.A||i.A===run.A||i.row.L!==run.row.L) continue; cross.push({x:(run.A===(i.A+1)%3?i.row.o1:i.row.o2)}); }
+  for(const i of infos){
+    if(!i) continue;
+    if(i===run){ buildRunway(B,m,run,lod,cross); continue; }
+    if(run&&(i.a===i.A||i.row.L===run.row.L)) continue;   // trusses stop at the hall roof; level crossings land on it
+    if(i.row.stair) buildArenaStair(B,m,i,lod); else buildWalk(B,m,i,lod);
+  }
+}
+
 /* ================= sector build ================= */
 function farModule(B,r,nb,t){
   const ex=nb.map(e=>e.ex), lo=[-8,-8,-8], hi=[8,8,8];
@@ -1154,7 +1594,10 @@ function buildSector(sx,sy,sz,lod){
   for(let i=0;i<CH;i++) for(let j=0;j<CH;j++) for(let k=0;k<CH;k++){
     const m=[sx*CH+i,sy*CH+j,sz*CH+k];
     const t=moduleType(m[0],m[1],m[2]);
-    if(t==='empty'){ connectors(B,m,lod); continue; }
+    if(t==='empty'){ const f=featureAt(m[0],m[1],m[2]);
+      if(f&&f.type==='arena'&&m[0]===f.c[0]&&m[1]===f.c[1]&&m[2]===f.c[2]) buildArena(B,f,lod);
+      else if(f&&f.type==='pillars') buildPillars(B,m,f,lod);
+      connectors(B,m,lod,f); continue; }
     if(!exposedAny(m)) continue;
     const g=district(m[0],m[1],m[2]);
     const yaw=t==='mass'?hash3(m[0],m[1],m[2],SEED+21)%4:0;
@@ -1207,7 +1650,9 @@ const canvas=document.getElementById('scene');
 let renderer;
 try{ renderer=new THREE.WebGLRenderer({canvas,antialias:false,powerPreference:'high-performance'}); }
 catch(err){ document.body.insertAdjacentHTML('beforeend','<div id="err">This browser could not start WebGL, which the castle needs.</div>'); return; }
-const PR=Math.min(window.devicePixelRatio||1,TOUCH?1:1.25);
+// render at the screen's real pixel density (capped), then adapt to keep the frame rate up
+const DPR=window.devicePixelRatio||1, PR_MAX=Math.min(DPR,TOUCH?2:1.5), PR_MIN=Math.min(DPR,TOUCH?0.9:1);
+let PR=Math.min(PR_MAX,TOUCH?1.6:1.25);
 renderer.setPixelRatio(PR);
 const scene=new THREE.Scene();
 scene.background=FOGCOL;
@@ -1231,7 +1676,7 @@ const blurMat=new THREE.ShaderMaterial({vertexShader:VS,uniforms:{t:{value:null}
 const poisson=[[-.94,-.40],[.95,-.77],[-.09,-.93],[.34,.29],[-.92,.46],[-.82,-.88],[-.38,.28],[.97,.19],[.44,-.98],[.54,.77],[-.26,-.42],[-.17,.98],[.79,-.36],[-.61,-.03],[.14,.62],[.33,-.37]].map(([x,y])=>new THREE.Vector2(x,y));
 const compMat=new THREE.ShaderMaterial({vertexShader:VS,uniforms:{
   tC:{value:null},tD:{value:null},tB:{value:null},near:{value:camera.near},far:{value:camera.far},res:{value:new THREE.Vector2()},
-  time:{value:0},aperture:{value:14},maxR:{value:5},poisson:{value:poisson},taps:{value:TOUCH?8:16},
+  time:{value:0},aperture:{value:TOUCH?0:14},maxR:{value:5},poisson:{value:poisson},taps:{value:TOUCH?0:16},
   camF:{value:new THREE.Vector3()},camR:{value:new THREE.Vector3()},camU:{value:new THREE.Vector3()},tanF:{value:1},aspect:{value:1},
   glowDir:{value:new THREE.Vector3(0.35,-0.75,0.55).normalize()},glow2:{value:new THREE.Vector3(-0.6,0.5,-0.62).normalize()},glowCol:{value:new THREE.Color(1.0,0.55,0.2)}
 },fragmentShader:`
@@ -1260,14 +1705,14 @@ const compMat=new THREE.ShaderMaterial({vertexShader:VS,uniforms:{
     col=mix(col,col*vec3(1.06,.97,.86),.5);
     float vig=smoothstep(1.15,.35,length((vUv-.5)*vec2(aspect,1.)*.95));
     col*=mix(.55,1.,vig);
-    col+=(rnd(vUv*res+time)-.5)*.035;
+    col+=(rnd(vUv*res+time)-.5)*(taps>0?.035:.018);
     gl_FragColor=vec4(col,1.);
   }`});
 const postScene=new THREE.Scene(), postCam=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
 const quad=new THREE.Mesh(new THREE.PlaneGeometry(2,2),compMat); quad.frustumCulled=false; postScene.add(quad);
 function pass(mat,target){ quad.material=mat; renderer.setRenderTarget(target); renderer.render(postScene,postCam); }
 function resize(){
-  const w=window.innerWidth,h=window.innerHeight; renderer.setSize(w,h,false);
+  const w=window.innerWidth,h=window.innerHeight; renderer.setPixelRatio(PR); renderer.setSize(w,h,false);
   camera.aspect=w/h; camera.updateProjectionMatrix();
   const Wd=Math.floor(w*PR),Hd=Math.floor(h*PR);
   rtMain.setSize(Wd,Hd); rtA.setSize(Wd>>1,Hd>>1); rtB.setSize(Wd>>1,Hd>>1);
@@ -1275,6 +1720,14 @@ function resize(){
   compMat.uniforms.maxR.value=Math.max(2,3*Hd/900);
 }
 window.addEventListener('resize',resize); resize();
+let perfT=0, perfN=0, perfGood=0;
+function adaptResolution(dt){
+  perfT+=dt; perfN++; if(perfT<2) return;
+  const fps=perfN/perfT; perfT=0; perfN=0;
+  if(fps<40 && PR>PR_MIN+0.01){ PR=Math.max(PR_MIN,PR-0.15); perfGood=0; resize(); }
+  else if(fps>57 && PR<PR_MAX-0.01){ if(++perfGood>=2){ PR=Math.min(PR_MAX,PR+0.1); perfGood=0; resize(); } }
+  else perfGood=0;
+}
 function renderFrame(t){
   renderer.setRenderTarget(rtMain); renderer.render(scene,camera);
   brightMat.uniforms.t.value=rtMain.texture; pass(brightMat,rtA);
@@ -1388,7 +1841,7 @@ function initBiwa(){
   slapBuf=actx.createBuffer(1,n,sr); slapBuf.copyToChannel(s,0);
   if(window.BIWA_SAMPLE_B64 && !biwaSample){ try{ const bin=atob(window.BIWA_SAMPLE_B64), u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); actx.decodeAudioData(u.buffer).then(b=>{ biwaSample=b; }).catch(()=>{}); }catch(_){} }
 }
-let biwaSample=null;
+let biwaSample=null, biwaEl=null;
 // a biwa strike; with a position it comes from that place in the castle (louder near, faint far)
 function biwaDest(pos){
   const g=actx.createGain(); g.gain.value=pos?1.7:0.9;
@@ -1409,6 +1862,7 @@ function slap(t,gain,out){
 }
 function playBiwa(pos){
   if(!actx) return; initBiwa();
+  if(!biwaSample&&biwaEl){ const a=biwaEl.cloneNode(), d=pos?camera.position.distanceTo(pos):0; a.volume=pos?Math.max(0.08,Math.min(1,30/(30+0.55*Math.max(0,d-30)))):0.9; a.play().catch(()=>{}); return; }
   const dest=biwaDest(pos||null);
   if(biwaSample){ const s=actx.createBufferSource(); s.buffer=biwaSample; s.connect(dest); s.start(); return; }
   if(!biwaBufs) return;
@@ -1426,7 +1880,7 @@ function updateListener(){
   else { L.setPosition(p.x,p.y,p.z); L.setOrientation(_lf.x,_lf.y,_lf.z,_lu.x,_lu.y,_lu.z); }
 }
 const toast=document.getElementById('toast'); let toastT=null;
-function say(text){ toast.textContent=text; toast.classList.add('on'); clearTimeout(toastT); toastT=setTimeout(()=>toast.classList.remove('on'),2200); }
+function say(text,ms){ toast.textContent=text; toast.classList.add('on'); clearTimeout(toastT); toastT=setTimeout(()=>toast.classList.remove('on'),ms||2400); }
 // a biwa strike rearranges the districts around you; your own strike (F) also turns your gravity
 function shiftWorld(opts={}){
   playBiwa(opts.src||null);
@@ -1439,18 +1893,18 @@ function shiftWorld(opts={}){
       const ax=AX[Math.floor(Math.random()*6)]; startOut(s,new THREE.Vector3().setComponent(ax[0],ax[1])); changed++;
     }
   }
-  if(changed){ memo.clear(); typeMemo.clear(); }
+  if(changed){ memo.clear(); typeMemo.clear(); arenaMemo.clear(); pillarMemo.clear(); bridgeMemo.clear(); }
   scrambleMap();
-  if(opts.src){ say('べべん — a biwa sounds '+relDir(opts.src)+', and the rooms shift'); return; }
+  if(opts.src){ say('A biwa sounds '+relDir(opts.src)+', and the rooms shift'); return; }
   const g=district(Math.round(p.x/M),Math.round(p.y/M),Math.round(p.z/M));
-  if(g!==player.g){ setGravity(g); say('べべん — the castle turns: '+AXNAME[g].toLowerCase()+' is now down'); }
-  else say('べべん — the districts around you rearrange');
+  if(g!==player.g){ setGravity(g); say('The castle turns: the '+AXNAME[g].toLowerCase()+' is now down'); }
+  else say('The biwa sounds, and the districts around you rearrange');
 }
 
 /* ================= your music: a file you pick, looped in your browser only =================
    The track is decoded with Web Audio and looped seamlessly. It is kept in this browser's own storage
    so it starts again next time; it is never uploaded anywhere. */
-const music={buf:null,src:null,gain:null,on:true,name:''};
+const music={buf:null,src:null,gain:null,on:true,name:'',el:null};
 const IDB={
   open(){ return new Promise((res,rej)=>{ try{ const q=indexedDB.open('mugen-music',1); q.onupgradeneeded=()=>q.result.createObjectStore('t'); q.onsuccess=()=>res(q.result); q.onerror=()=>rej(q.error); }catch(e){ rej(e); } }); },
   async get(){ try{ const db=await this.open(); return await new Promise((res)=>{ const r=db.transaction('t').objectStore('t').get('track'); r.onsuccess=()=>res(r.result||null); r.onerror=()=>res(null); }); }catch(_){ return null; } },
@@ -1458,17 +1912,19 @@ const IDB={
   async clear(){ try{ const db=await this.open(); db.transaction('t','readwrite').objectStore('t').delete('track'); }catch(_){} }
 };
 function musicLabel(){ const el=document.getElementById('musicName'); if(el) el.textContent=music.name?('♪ '+music.name+(music.on?'':' (paused)')):'No music chosen'; }
-async function useTrack(bytes,name,remember){
+async function useTrack(bytes,name,remember,quiet){
   if(!actx){ try{ actx=new (window.AudioContext||window.webkitAudioContext)(); }catch(_){ return; } }
   try{
     const buf=await actx.decodeAudioData(bytes.slice(0));
     music.buf=buf; music.name=name;
+    if(music.el){ music.el.pause(); music.el=null; }
     if(remember) IDB.set({bytes,name});
     if(started) playTrack();
     musicLabel();
-  }catch(_){ say('That file could not be played. Try an MP3, M4A, OGG or WAV file.'); }
+  }catch(_){ if(!quiet) say('That file could not be played. Try an MP3, M4A, OGG or WAV file.'); }
 }
 function playTrack(){
+  if(music.el&&!music.buf){ music.el.volume=music.on?0.6:0; music.el.play().catch(()=>{}); return; }
   if(!actx||!music.buf) return;
   if(actx.state==='suspended') actx.resume();
   if(music.src){ try{ music.src.stop(); }catch(_){} }
@@ -1478,9 +1934,10 @@ function playTrack(){
   const s=actx.createBufferSource(); s.buffer=music.buf; s.loop=true; s.connect(music.gain); s.start(); music.src=s;
 }
 function toggleMusic(){
-  if(!music.buf){ document.getElementById('musicFile').click(); return; }
+  if(!music.buf&&!music.el){ document.getElementById('musicFile').click(); return; }
   music.on=!music.on;
-  if(music.gain) music.gain.gain.setTargetAtTime(music.on?0.6:0,actx.currentTime,0.25);
+  if(music.el&&!music.buf){ music.el.volume=music.on?0.6:0; if(music.on) music.el.play().catch(()=>{}); }
+  else if(music.gain) music.gain.gain.setTargetAtTime(music.on?0.6:0,actx.currentTime,0.25);
   musicLabel(); say(music.on?'Music on':'Music off');
 }
 
@@ -1501,13 +1958,13 @@ function moveAxis(i,d){
     aabb(P.pos,e); overlapping(_lo,_hi,hits); if(!hits.length) return;
     let b=hits[0];
     if(i===a){
-      for(const h of hits){ if(d*sg<0 ? (sg>0?h[4]>b[4]:h[1]<b[1]) : (sg>0?h[1]<b[1]:h[4]>b[4])) b=h; }
-      if(d*sg<0){ P.pos.setComponent(i,sg>0?b[4]-e.lo[i]:b[1]-e.hi[i]); P.grounded=true; }
-      else P.pos.setComponent(i,sg>0?b[1]-e.hi[i]-1e-4:b[4]-e.lo[i]+1e-4);
+      for(const h of hits){ if(d*sg<0 ? (sg>0?h[a+3]>b[a+3]:h[a]<b[a]) : (sg>0?h[a]<b[a]:h[a+3]>b[a+3])) b=h; }
+      if(d*sg<0){ P.pos.setComponent(i,sg>0?b[a+3]-e.lo[i]:b[a]-e.hi[i]); P.grounded=true; }
+      else P.pos.setComponent(i,sg>0?b[a]-e.hi[i]-1e-4:b[a+3]-e.lo[i]+1e-4);
       P.vel.setComponent(i,0); return;
     }
     // try stepping up onto low obstacles (stairs, sills)
-    let need=0; for(const h of hits){ const top=sg>0?h[4]-P.pos.getComponent(a):P.pos.getComponent(a)-h[1]; need=Math.max(need,top); }
+    let need=0; for(const h of hits){ const top=sg>0?h[a+3]-P.pos.getComponent(a):P.pos.getComponent(a)-h[a]; need=Math.max(need,top); }
     if(P.air<0.2 && need>0 && need<=STEP){
       const lift=[0,0,0]; lift[a]=sg*(need+0.01); aabb(P.pos,e,lift); overlapping(_lo,_hi,hits);
       if(!hits.length){ P.pos.setComponent(a,P.pos.getComponent(a)+lift[a]); return; }
@@ -1545,7 +2002,7 @@ function stepPlayer(dt,input){
   else { P.air+=dt; P.safeT=0; }
   // falling into another district: its gravity takes over
   if(P.air>6.5){ // Nakime catches a long fall and returns you
-    P.pos.copy(P.safe.pos); P.vel.set(0,0,0); setGravity(P.safe.g); P.air=0; playBiwa(null); say('べべん — the biwa pulls you back');
+    P.pos.copy(P.safe.pos); P.vel.set(0,0,0); setGravity(P.safe.g); P.air=0; playBiwa(null); say('The biwa pulls you back');
   }
   if(P.grounded && wish.lengthSq()>0.01) P.bob+=dt*(input.sprint?7.5:5.2);
   // facing and animation state for the character
@@ -1865,18 +2322,18 @@ function drawMap(){
     mctx.lineWidth=pass[0]; mctx.strokeStyle=pass[1]; mctx.beginPath();
     trail.forEach((q,i)=>{ const x=X(q[0])+Math.sin(i*1.7)*0.7, z=Z(q[1])+Math.cos(i*2.3)*0.7; if(q[2]||i===0) mctx.moveTo(x,z); else mctx.lineTo(x,z); });
     mctx.stroke(); }
-  for(const mk of marks){ const x=X(mk.x), z=Z(mk.z); if(Math.hypot(x,z)>R) continue; mctx.strokeStyle='rgba(150,30,20,.85)'; mctx.lineWidth=2; mctx.beginPath(); mctx.arc(x,z,9,0,Math.PI*2); mctx.stroke(); mctx.fillStyle='rgba(150,30,20,.9)'; mctx.font='12px "Shippori Mincho B1",serif'; mctx.textAlign='center'; mctx.textBaseline='middle'; mctx.fillText('琵',x,z+1); }
+  for(const mk of marks){ const x=X(mk.x), z=Z(mk.z); if(Math.hypot(x,z)>R) continue; mctx.strokeStyle='rgba(150,30,20,.85)'; mctx.lineWidth=2; mctx.beginPath(); mctx.arc(x,z,9,0,Math.PI*2); mctx.stroke(); mctx.fillStyle='rgba(150,30,20,.9)'; mctx.beginPath(); mctx.ellipse(x,z+2,3.2,4.2,0,0,Math.PI*2); mctx.fill(); mctx.fillRect(x-0.8,z-6,1.6,5); }
   // the Heart is the one thing the map always tells true
   const hx=X(HEART.x), hz=Z(HEART.z), hd=Math.hypot(hx,hz);
   mctx.fillStyle='rgba(170,40,20,.9)'; mctx.strokeStyle='rgba(170,40,20,.9)';
   if(hd<R){ mctx.beginPath(); mctx.arc(hx,hz,7,0,Math.PI*2); mctx.fill(); }
   else { const a=Math.atan2(hz,hx); mctx.save(); mctx.translate(Math.cos(a)*R,Math.sin(a)*R); mctx.rotate(a); mctx.beginPath(); mctx.moveTo(10,0); mctx.lineTo(-8,-7); mctx.lineTo(-4,0); mctx.lineTo(-8,7); mctx.closePath(); mctx.fill(); mctx.restore();
-    mctx.font='13px "Shippori Mincho B1",serif'; mctx.textAlign='center'; mctx.fillText('心',Math.cos(a)*(R-22),Math.sin(a)*(R-22)+4); }
+    mctx.font='600 12px "Zen Kaku Gothic New",system-ui,sans-serif'; mctx.textAlign='center'; mctx.fillText('Heart',Math.cos(a)*(R-30),Math.sin(a)*(R-30)+4); }
   const f=new THREE.Vector3(0,0,-1).applyQuaternion(camera.quaternion), fa=Math.atan2(f.z,f.x);
   mctx.fillStyle='#b8261a'; mctx.beginPath(); mctx.arc(0,0,5,0,Math.PI*2); mctx.fill();
   mctx.strokeStyle='#b8261a'; mctx.lineWidth=2.5; mctx.beginPath(); mctx.moveTo(0,0); mctx.lineTo(Math.cos(fa)*16,Math.sin(fa)*16); mctx.stroke();
   mctx.restore();
-  mctx.fillStyle='rgba(40,26,16,.85)'; mctx.font='600 15px "Shippori Mincho B1",serif'; mctx.textAlign='left'; mctx.fillText('北',16,26);
+  mctx.fillStyle='rgba(40,26,16,.85)'; mctx.font='700 15px "Zen Kaku Gothic New",system-ui,sans-serif'; mctx.textAlign='left'; mctx.fillText('N',16,26); mctx.fillRect(19,30,2,10);
   mapNote.textContent=progress.lies?`The biwa has rewritten this map ${progress.lies} time${progress.lies===1?'':'s'}. Only the Heart's mark stays true.`:'Fresh ink. The biwa has not touched this map yet.';
 }
 function toggleMap(){ mapOpen=!mapOpen; mapEl.hidden=!mapOpen; if(mapOpen) drawMap(); }
@@ -1900,7 +2357,7 @@ function updatePrompt(){
   let txt='';
   if(target){ if(target.type==='player') txt='Confront the biwa player';
     else { const d=target.d, open=(doorTarget.get(d.id)||0)>0.5; txt=d.kind==='locked'?(progress.keys?'Unlock with a key charm':'Locked'):d.kind==='sealed'?(progress.keys?'Unseal the gate with a key charm':'Sealed gate'):(open?'Close the door':(d.kind==='gate'?'Open the gate':'Open the door')); } }
-  if(txt){ promptEl.innerHTML=''; const k=document.createElement('kbd'); k.textContent=TOUCH?'開':'E'; promptEl.append(k,document.createTextNode(' '+txt)); promptEl.hidden=false; } else promptEl.hidden=true;
+  if(txt){ promptEl.innerHTML=''; const k=document.createElement('kbd'); k.textContent=TOUCH?'Use':'E'; promptEl.append(k,document.createTextNode(' '+txt)); promptEl.hidden=false; } else promptEl.hidden=true;
 }
 function interact(){
   if(!target) return;
@@ -1939,11 +2396,30 @@ function updateQuest(dt,t){
 const keys=new Set(); let started=false, locked=false, dragging=false, lx=0, ly=0, dragModeOnly=false;
 const intro=document.getElementById('intro'), resumeEl=document.getElementById('resume'), cross=document.getElementById('cross');
 if(TOUCH){ document.getElementById('keysDesk').hidden=true; document.getElementById('keysTouch').hidden=false; }
+if(TOUCH) document.body.classList.add('touch');
+/* full screen: a button on every device; phones also go full screen when you enter the castle.
+   iPhone Safari has no full screen for pages, so there the button explains Add to Home Screen instead. */
+const fsBtn=document.getElementById('fsBtn'), fsRoot=document.documentElement;
+const canFS=!!(fsRoot.requestFullscreen||fsRoot.webkitRequestFullscreen);
+const standalone=(window.matchMedia&&(matchMedia('(display-mode: fullscreen)').matches||matchMedia('(display-mode: standalone)').matches))||navigator.standalone===true;
+const fsActive=()=>!!(document.fullscreenElement||document.webkitFullscreenElement);
+function fsLabel(){ fsBtn.textContent=fsActive()?'Exit full screen':'Full screen'; }
+function enterFS(){
+  try{
+    const r=fsRoot.requestFullscreen?fsRoot.requestFullscreen({navigationUI:'hide'}):fsRoot.webkitRequestFullscreen();
+    const lock=()=>{ try{ if(TOUCH&&screen.orientation&&screen.orientation.lock) screen.orientation.lock('landscape').catch(()=>{}); }catch(_){} };
+    if(r&&r.then) r.then(lock).catch(()=>{}); else lock();
+  }catch(_){}
+}
+function exitFS(){ try{ if(document.exitFullscreen) document.exitFullscreen().catch(()=>{}); else if(document.webkitExitFullscreen) document.webkitExitFullscreen(); }catch(_){} }
+fsBtn.addEventListener('click',e=>{ e.stopPropagation(); if(!canFS){ say('For full screen on iPhone: tap Share, then Add to Home Screen, and open the castle from your home screen',7000); return; } if(fsActive()) exitFS(); else enterFS(); });
+document.addEventListener('fullscreenchange',fsLabel); document.addEventListener('webkitfullscreenchange',fsLabel);
+if(standalone) fsBtn.hidden=true;
 function start(){
   started=true; intro.hidden=true;
   try{ actx=actx||new (window.AudioContext||window.webkitAudioContext)(); if(actx.state==='suspended') actx.resume(); initBiwa(); }catch(_){}
   playTrack();
-  if(TOUCH) document.getElementById('touchUI').hidden=false; else requestLock();
+  if(TOUCH){ document.getElementById('touchUI').hidden=false; if(canFS&&!standalone&&!fsActive()) enterFS(); } else requestLock();
   canvas.focus();
 }
 function requestLock(){ try{ const pr=canvas.requestPointerLock&&canvas.requestPointerLock(); if(pr&&pr.catch) pr.catch(()=>{ dragModeOnly=true; }); }catch(_){ dragModeOnly=true; } }
@@ -1997,8 +2473,21 @@ document.getElementById('tMap').addEventListener('click',toggleMap);
 document.getElementById('tMusic').addEventListener('click',toggleMusic);
 document.getElementById('musicFile').addEventListener('change',async e=>{ const f=e.target.files&&e.target.files[0]; if(!f) return; await useTrack(await f.arrayBuffer(),f.name.replace(/\.[^.]+$/,'').replace(/[_]+/g,' '),true); e.target.value=''; });
 document.getElementById('musicPick').addEventListener('click',()=>document.getElementById('musicFile').click());
-document.getElementById('musicForget').addEventListener('click',()=>{ IDB.clear(); if(music.src){ try{ music.src.stop(); }catch(_){} } music.buf=null; music.src=null; music.name=''; musicLabel(); });
-IDB.get().then(t=>{ if(t&&t.bytes) useTrack(t.bytes,t.name,false); });
+document.getElementById('musicForget').addEventListener('click',()=>{ IDB.clear(); if(music.src){ try{ music.src.stop(); }catch(_){} } music.buf=null; music.src=null; music.name=''; musicLabel(); if(themeBytes) useTrack(themeBytes,'Castle theme',false,true); else if(FROM_DISK) useThemeElement(); });
+/* sounds that sit next to the page in an audio folder (the GitHub Pages package): audio/theme.mp3 loops as the
+   music and audio/biwa.mp3 is the biwa. A track you pick yourself still wins. Without the folder nothing changes. */
+const SOUND={theme:'audio/theme.mp3',biwa:'audio/biwa.mp3'}, FROM_DISK=location.protocol==='file:';
+let themeBytes=null;
+async function fetchBytes(url){ try{ const r=await fetch(url); if(!r.ok) return null; const b=await r.arrayBuffer(); return b.byteLength>512?b:null; }catch(_){ return null; } }
+function useThemeElement(){   // opened straight from disk: browsers block fetch there, but plain audio elements still play
+  const el=new Audio(SOUND.theme); el.loop=true; el.preload='auto';
+  el.addEventListener('canplay',()=>{ if(music.buf||music.el) return; music.el=el; music.name='Castle theme'; musicLabel(); themeNote(); if(started) playTrack(); },{once:true});
+}
+function themeNote(){ const n=document.getElementById('musicNote'); if(n) n.textContent="The castle's theme plays while you explore. Pick a track of your own to replace it; it stays in this browser only and is never uploaded."; }
+const themeReady=FROM_DISK?Promise.resolve():fetchBytes(SOUND.theme).then(b=>{ themeBytes=b; if(b) themeNote(); });
+if(FROM_DISK){ const el=new Audio(SOUND.biwa); el.preload='auto'; el.addEventListener('canplay',()=>{ biwaEl=el; },{once:true}); }
+else fetchBytes(SOUND.biwa).then(b=>{ if(!b) return; try{ if(!actx) actx=new (window.AudioContext||window.webkitAudioContext)(); actx.decodeAudioData(b).then(x=>{ biwaSample=x; }).catch(()=>{}); }catch(_){} });
+IDB.get().then(async t=>{ if(t&&t.bytes){ useTrack(t.bytes,t.name,false); return; } await themeReady; if(themeBytes) useTrack(themeBytes,'Castle theme',false,true); else if(FROM_DISK) useThemeElement(); });
 musicLabel();
 
 /* ================= loop ================= */
@@ -2012,6 +2501,7 @@ function whereName(){
   if(!player.grounded) return player.air>0.6?'Falling':'In the air';
   const t=moduleType(m[0],m[1],m[2]);
   if(onPilgrimWay(m[0],m[1],m[2])) return "The Pilgrim's Way";
+  if(t==='empty'){ const f=featureAt(m[0],m[1],m[2]); if(f) return f.type==='arena'?'A battleground':'A hall of pillars'; const rw=runwayAt(m); if(rw) return rw.grand==='corridor'?'A long corridor':rw.grand==='lanterns'?'A lantern path':'A long hall'; }
   if(t==='hall'){ const lk=landmarkKind(m); if(lk) return LANDMARK_NAME[lk]; }
   return t==='house'?'A house':t==='hall'?'A great hall':t==='terrace'?'A courtyard':t==='mass'?'On a rooftop':'A walkway';
 }
@@ -2048,7 +2538,7 @@ function frame(now){
   if(Math.abs(camera.fov-targetFov)>0.05){ camera.fov+=(targetFov-camera.fov)*Math.min(1,dt*6); camera.updateProjectionMatrix(); }
   camera.updateMatrixWorld();
   stream(dt);
-  updateQuest(dt,now/1000); updateListener();
+  updateQuest(dt,now/1000); updateListener(); if(started) adaptResolution(dt);
   renderFrame(now/1000);
   hudT-=dt;
   if(hudT<=0){ hudT=0.25;
@@ -2059,6 +2549,5 @@ function frame(now){
 requestAnimationFrame(frame);
 })();
 </script>
-
 </body>
 </html>
