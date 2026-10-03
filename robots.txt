@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sahiljoster32.github.io/infinity-castle/sitemap.xml
